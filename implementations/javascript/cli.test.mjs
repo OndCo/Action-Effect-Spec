@@ -1,7 +1,9 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync, symlinkSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import test from 'node:test';
 
 test('unexpected handler failure stays an evaluation failure and never echoes its error text', async () => {
@@ -78,4 +80,32 @@ test('blank frames and extra request fields rejected; final frame needs no newli
   assert.equal(rows.length, 3);
   assert.ok(rows.slice(0, 2).every(row => row.result.reason === 'transport'));
   assert.equal(rows[2].result.status, 'capabilities');
+});
+
+test('CLI invoked through a symlink actually produces a response', () => {
+  const directory = mkdtempSync(join(tmpdir(), 'effect-cli-link-'));
+  try {
+    const alias = join(directory, 'consumer.mjs');
+    symlinkSync(cli, alias);
+    const result = spawnSync(process.execPath, [alias], {
+      input: hello, cwd: directory, encoding: 'utf8', timeout: 10000,
+    });
+    assert.equal(result.status, 0, result.stderr);
+    const rows = output(result);
+    assert.equal(rows.length, 1, 'A successful exit without a result is not a completed check');
+    assert.equal(rows[0].result.status, 'capabilities');
+    assert.equal(rows[0].result.authority, 'not_evaluated');
+  } finally {
+    rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test('CLI remains import-safe from a stdin module with no file entry point', () => {
+  const url = new URL('./cli.mjs', import.meta.url).href;
+  const result = spawnSync(process.execPath, ['--input-type=module', '-'], {
+    input: `await import(${JSON.stringify(url)}); console.log('import-only');`,
+    cwd: tmpdir(), encoding: 'utf8', timeout: 10000,
+  });
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(result.stdout, 'import-only\n');
 });

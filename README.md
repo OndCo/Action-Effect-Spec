@@ -51,6 +51,9 @@ printf '%s\n' '{"id":"example","op":"hello"}' | node implementations/javascript/
 printf '%s\n' '{"id":"example","op":"hello"}' | python3 -B implementations/python/cli.py
 ```
 
+The current reproducibility targets are Linux and macOS; Windows has not been
+qualified. Entry-point packaging corrections are recorded in [CHANGELOG.md](CHANGELOG.md).
+
 Both CLIs use JSON-Lines. A `check` request carries `id`, `op: "check"` and
 `document_b64`, the standard-base64 encoding of the raw description bytes.
 The default fixture is synthetic. `--basis PATH` selects a caller-controlled
