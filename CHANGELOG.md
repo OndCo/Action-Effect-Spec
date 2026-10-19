@@ -1,5 +1,18 @@
 # Draft Change Record
 
+## 0.2.0-draft.1
+
+Added an opt-in `offline-consumer-v1.1` contract with startup configuration
+rejection, explicit contract identity and deterministic final projection error
+precedence. Added paired-defect and legacy-compatibility tests in JavaScript and
+Python. The seven frozen files, core wire version and default v1 behavior remain
+unchanged, including the documented historical JS null-option fallback.
+
+Added the GitHub issue-comment profile: exact native invocation and body binding,
+partial direct scope, explicit provider-descendant unknowns, and a distinct
+authorization integration in the companion benchmark. This is a narrowly
+implemented profile, not a claim that legacy refund consumers understand GitHub.
+
 ## Public-Checkout Entry Point Repair
 
 During clean-clone reproduction on 18 October 2026 (America/Toronto), an absolute

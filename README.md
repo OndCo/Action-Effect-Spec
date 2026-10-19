@@ -3,7 +3,8 @@
 **Describe what an action may do, what supports that description, and what is
 still unknown. Keep that separate from permission to execute.**
 
-Version `0.1.0-draft.1`. Public working draft, convened by Ond. Not an adopted
+Release `0.2.0-draft.1`; core wire version `0.1.0-draft.1` is unchanged.
+Public working draft, convened by Ond. Not an adopted
 standard, certification program or production authorization service.
 
 A tool name does not determine its consequences. Implementation, input,
@@ -28,6 +29,11 @@ Invocation + implementation + context
 - [Specification](SPEC.md): 28 identified core requirements.
 - [Implemented profile](conformance/consumer-profile-v1.md): exact offline
   interface, byte rules, processing order and supported finite domain.
+- [Opt-in v1.1 contract](conformance/consumer-profile-v1.1.md): explicit startup
+  configuration handling and compound-error precedence; v1 remains the default.
+- [GitHub issue-comment profile](profiles/github-issue-comment/README.md): an
+  additive direct/partial domain profile, with runnable MCP/SDK, consumer and
+  OPA examples in the companion benchmark. It does not require OSuite.
 - [Synthetic example](examples/partial-refund.json) and
   [binding semantics](examples/binding-profile.md).
 - [JavaScript](implementations/javascript/cli.mjs) and
@@ -45,7 +51,7 @@ recommended. No package installation, account, telemetry, cloud resource or
 OSuite dependency is required. From this repository's root:
 
 ```sh
-node --test implementations/javascript/consumer.test.mjs implementations/javascript/cli.test.mjs
+node --test implementations/javascript/*.test.mjs
 python3 -B -W error -m unittest discover -s implementations/python/tests
 printf '%s\n' '{"id":"example","op":"hello"}' | node implementations/javascript/cli.mjs
 printf '%s\n' '{"id":"example","op":"hello"}' | python3 -B implementations/python/cli.py
@@ -58,9 +64,11 @@ Both CLIs use JSON-Lines. A `check` request carries `id`, `op: "check"` and
 `document_b64`, the standard-base64 encoding of the raw description bytes.
 The default fixture is synthetic. `--basis PATH` selects a caller-controlled
 startup fixture; an incoming request cannot change that trust configuration.
+Add `--contract offline-consumer-v1.1` to either CLI to select the clarified
+contract explicitly. Contract identity and core wire identity are separate.
 
 For a reproducible cross-consumer run, follow the benchmark's
-[pinned-checkout instructions](https://github.com/OndCo/Action-Effect-Bench#reproduce).
+[pinned-checkout instructions](https://github.com/OndCo/Action-Effect-Bench#reproduce-the-original-corpus).
 The repository names on GitHub are capitalized, but those instructions explicitly
 clone into lowercase sibling directories required by this draft runner.
 

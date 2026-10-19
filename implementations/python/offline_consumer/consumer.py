@@ -1,10 +1,10 @@
-"""Ordered processing under Offline Consumer Implementation Profile v1."""
+"""Ordered processing under the v1 and opt-in v1.1 offline contracts."""
 
 import base64
 import hashlib
 from typing import Any, Dict
 
-from .configuration import AMOUNT_NAME, PROFILE_URI, Snapshot
+from .configuration import AMOUNT_NAME, PROFILE_URI, ConfigurationError, Snapshot
 from .errors import Rejection, outcome
 from .json_subset import canonical_bytes, canonical_sha256, parse_json
 from .projection import validate_projection
@@ -13,14 +13,20 @@ from .structure import SPEC_VERSION, validate_structure
 
 
 class Consumer:
-    def __init__(self, snapshot: Snapshot) -> None:
+    def __init__(self, snapshot: Snapshot, *, contract: str = "offline-consumer-v1") -> None:
+        if contract not in ("offline-consumer-v1", "offline-consumer-v1.1"):
+            raise ConfigurationError("unsupported consumer contract")
         self._snapshot = snapshot
+        self._contract = contract
 
-    @staticmethod
-    def hello() -> Dict[str, Any]:
-        return outcome("capabilities", "offline_snapshot", spec_version=SPEC_VERSION,
-                       profile=PROFILE_URI, numeric_domain="safe_integer_tokens_only",
-                       acceptance_cache=False)
+    def hello(self=None) -> Dict[str, Any]:
+        # Keep the legacy class-level Consumer.hello() v1 query callable.
+        result = outcome("capabilities", "offline_snapshot", spec_version=SPEC_VERSION,
+                         profile=PROFILE_URI, numeric_domain="safe_integer_tokens_only",
+                         acceptance_cache=False)
+        if self is not None and self._contract == "offline-consumer-v1.1":
+            result["contract"] = self._contract
+        return result
 
     def check(self, raw: bytes) -> Dict[str, Any]:
         return self._evaluate(raw, diagnostic=False)

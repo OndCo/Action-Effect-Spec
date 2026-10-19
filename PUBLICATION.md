@@ -59,12 +59,16 @@ manufactured or replaced by an assertion of external verification.
 ## Open Boundaries
 
 - Full core conformance, live authorization and real provider effects remain
-  unimplemented by this profile.
-- Missing/non-object trusted startup fixture members are rejected during startup
-  by both consumers; the next profile revision should spell out this boundary
-  more explicitly than the current invalid-configuration/applicability split.
-- Simultaneous final-stage projection defects need a fully specified precedence
-  before a stable profile. Current finite cases do not establish every ordering.
+  unimplemented by the legacy offline refund profile. The additive GitHub
+  profile's consumer, real-runtime demonstration and separately trusted OPA
+  authorizer reside in the companion benchmark, not in these refund CLIs.
+- The new opt-in `offline-consumer-v1.1` specifies and tests rejection of missing
+  or non-object trusted startup fixture members in both consumers, including
+  explicit null configuration. It does not rewrite the frozen v1 contract or
+  change v1's legacy default behavior.
+- Simultaneous final-stage projection defects have deterministic precedence in
+  opt-in v1.1, with paired-error tests in both languages. This is a clarified
+  finite profile, not general effect-analysis correctness or a stable standard.
 - A stable general profile needs new domains, implementations and independent
   review. Public development cases cannot be relabeled as untouched holdouts.
 

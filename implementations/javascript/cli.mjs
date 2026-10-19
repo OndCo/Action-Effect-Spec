@@ -8,7 +8,7 @@ import { isObject } from './schema.mjs';
 const FRAME_LIMIT = 2 * 1024 * 1024;
 const failure = (status, reason) => ({ id: null, result: { status, reason, authority: 'not_evaluated' } });
 
-export function handleFrame(frame, check) {
+export function handleFrame(frame, check, options = {}) {
   let request;
   let document;
   try {
@@ -33,7 +33,7 @@ export function handleFrame(frame, check) {
     return error instanceof InputError ? failure('invalid_input', 'transport') : failure('evaluation_failure', 'internal_error');
   }
   try {
-    if (request.op === 'hello') return { id: request.id, result: capabilities() };
+    if (request.op === 'hello') return { id: request.id, result: capabilities(options) };
     return { id: request.id, result: request.op === 'check' ? check(document) : canonicalResult(document) };
   } catch {
     return { ...failure('evaluation_failure', 'internal_error'), id: request.id };
@@ -46,10 +46,16 @@ async function emit(row) {
 
 async function main() {
   let check;
+  const options = {};
   try {
     const args = process.argv.slice(2);
-    if (args.length !== 0 && !(args.length === 2 && args[0] === '--basis' && args[1])) throw new Error('arguments');
-    check = args.length ? createConsumer({ basis: parseStrict(readFileSync(args[1])) }) : createConsumer();
+    for (let i = 0; i < args.length; i += 2) {
+      const key = args[i] === '--basis' ? 'basis' : args[i] === '--contract' ? 'contract' : null;
+      if (!key || !args[i + 1] || Object.hasOwn(options, key)) throw new Error('arguments');
+      options[key] = args[i + 1];
+    }
+    if (Object.hasOwn(options, 'basis')) options.basis = parseStrict(readFileSync(options.basis));
+    check = createConsumer(options);
   } catch {
     process.stderr.write('Unable to initialize offline consumer; check local configuration and arguments.\n');
     process.exitCode = 2;
@@ -59,7 +65,7 @@ async function main() {
   let size = 0;
   let oversized = false;
   async function finish() {
-    await emit(oversized ? failure('evaluation_failure', 'limit_exceeded') : handleFrame(Buffer.concat(parts, size), check));
+    await emit(oversized ? failure('evaluation_failure', 'limit_exceeded') : handleFrame(Buffer.concat(parts, size), check, options));
     parts = [];
     size = 0;
     oversized = false;

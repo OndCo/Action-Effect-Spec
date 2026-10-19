@@ -13,6 +13,14 @@ const result = (status, reason) => ({ status, reason, authority: 'not_evaluated'
 const stop = (status, reason) => { throw new InputError(status, reason); };
 const bundled = path => parseStrict(readFileSync(new URL(`../../${path}`, import.meta.url)));
 const validateStructure = compileBundledSchema(bundled('schemas/effect-description.schema.json'));
+const CONTRACT_V1 = 'offline-consumer-v1';
+const CONTRACT_V11 = 'offline-consumer-v1.1';
+
+function selectedContract(options) {
+  const contract = options.contract === undefined ? CONTRACT_V1 : options.contract;
+  if (contract !== CONTRACT_V1 && contract !== CONTRACT_V11) throw new Error('Invalid consumer contract configuration');
+  return contract;
+}
 
 function references(doc) {
   const effects = new Map();
@@ -101,6 +109,13 @@ function projection(doc, basis) {
 }
 
 export function createConsumer(options = {}) {
+  const contract = selectedContract(options);
+  if (contract === CONTRACT_V11) {
+    // Only omitted selections use defaults in v1.1; retain v1's nullish fallback.
+    for (const field of ['profile', 'basis']) {
+      if (Object.hasOwn(options, field) && !isObject(options[field])) throw new Error(`Invalid ${field} configuration`);
+    }
+  }
   const profile = parseStrict(canonicalBytes(options.profile ?? bundled('examples/refund-profile.json')));
   const basis = parseStrict(canonicalBytes(options.basis ?? bundled('examples/synthetic-basis.json')));
   if (profile.id !== PROFILE_ID || digest(profile) !== PROFILE_HASH) throw new Error('Invalid pinned profile configuration');
@@ -141,7 +156,9 @@ export function canonicalResult(bytes) {
   }
 }
 
-export function capabilities() {
+export function capabilities(options = {}) {
+  const contract = selectedContract(options);
   return { ...result('capabilities', 'offline_snapshot'), spec_version: SPEC_VERSION, profile: PROFILE_ID,
-    numeric_domain: 'safe_integer_tokens_only', acceptance_cache: false };
+    numeric_domain: 'safe_integer_tokens_only', acceptance_cache: false,
+    ...(contract === CONTRACT_V11 ? { contract } : {}) };
 }
