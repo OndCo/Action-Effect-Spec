@@ -1,0 +1,27 @@
+{
+  "input": {
+    "operation": "refund",
+    "order": "order-42",
+    "amount_minor": "7300",
+    "currency": "USD"
+  },
+  "context": {
+    "account": "merchant-demo",
+    "destination": "original-payment",
+    "environment": "synthetic"
+  },
+  "implementation": {
+    "name": "synthetic-refund-tool",
+    "version": "1.0.0",
+    "visibility": "declared"
+  },
+  "mapping": {
+    "id": "https://example.org/mappings/refund",
+    "revision": "1",
+    "semantics": "possible refund to the original payment destination; downstream coverage partial"
+  },
+  "declaration": {
+    "issuer": "https://example.org/synthetic-issuer",
+    "claim": "editorial example only; not an observation or accepted completeness proof"
+  }
+}

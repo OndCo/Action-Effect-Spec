@@ -1,0 +1,104 @@
+{
+  "spec_version": "0.1.0-draft.1",
+  "profile": "https://example.org/profiles/refund/0.1.0-draft.1",
+  "profile_digest": {
+    "algorithm": "sha-256",
+    "value": "dddac40519b57620ca8b6fec558746ed8fb1f6ddf77263fd93cf5b2b582f2e00"
+  },
+  "record_id": "https://example.org/descriptions/synthetic-refund-1",
+  "invocation": {
+    "reference": "synthetic-basis.json#input",
+    "digest": {
+      "algorithm": "sha-256",
+      "value": "88dcd3125294fe6afcedcd3ac315b904924dffe8bd0be9c7b5cc7d1551468179"
+    }
+  },
+  "implementation": {
+    "reference": "synthetic-basis.json#implementation",
+    "digest": {
+      "algorithm": "sha-256",
+      "value": "965bb6d4d957fbde59f8fa622dff60f7682a002684cd1f32e2beeed6ac423566"
+    }
+  },
+  "mapping": {
+    "id": "https://example.org/mappings/refund",
+    "revision": "1",
+    "digest": {
+      "algorithm": "sha-256",
+      "value": "dd5b5de9eedf37304b0a3b92019dddf3cc78d4e3ce978bf69a4ad1119dbc7200"
+    }
+  },
+  "context": {
+    "reference": "synthetic-basis.json#context",
+    "digest": {
+      "algorithm": "sha-256",
+      "value": "4b361959071ece85de9c36133da78903c15181c06aadbc6578449af85d10569b"
+    }
+  },
+  "coverage": {
+    "scope": "direct",
+    "completeness": "partial",
+    "assumptions": [
+      "Synthetic declared behavior only; no remote provider inspected"
+    ],
+    "evidence_refs": [
+      "decl-1"
+    ]
+  },
+  "effects": [
+    {
+      "effect_id": "effect-1",
+      "category": "https://example.org/effects/funds-transfer/1",
+      "operation": "https://example.org/operations/refund/1",
+      "resource": {
+        "state": "known",
+        "namespace": "https://example.org/resource-types/order",
+        "value": "order-42"
+      },
+      "destination": {
+        "state": "known",
+        "namespace": "https://example.org/destination-types/payment",
+        "value": "original-payment"
+      },
+      "data_class": {
+        "state": "known",
+        "namespace": "https://example.org/classification",
+        "value": "synthetic-transaction"
+      },
+      "quantities": [
+        {
+          "name": "https://example.org/quantities/amount",
+          "value": "7300",
+          "unit": "USD",
+          "scale": "2"
+        }
+      ],
+      "modality": "may",
+      "evidence_refs": [
+        "decl-1"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "decl-1",
+      "kind": "declaration",
+      "source": "https://example.org/synthetic-issuer",
+      "artifact_ref": "https://example.org/local-fixtures/synthetic-basis#declaration",
+      "artifact_digest": {
+        "algorithm": "sha-256",
+        "value": "7bdedef748eea96235d96d3c3a6259566d42ff5870916e8f79c18e23eedacc8b"
+      },
+      "scope": "editorial-synthetic-example-only"
+    }
+  ],
+  "unknowns": [
+    {
+      "code": "unobserved_descendants",
+      "scope": "downstream provider behavior"
+    }
+  ],
+  "relations": [],
+  "critical_extensions": [],
+  "extensions": {}
+}

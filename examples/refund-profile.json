@@ -1,0 +1,35 @@
+{
+  "id": "https://example.org/profiles/refund/0.1.0-draft.1",
+  "spec_version": "0.1.0-draft.1",
+  "status": "editorial-synthetic-profile-only",
+  "domain_semantics": "synthetic-refund-partial-v1",
+  "identity_semantics": "opaque-exact-v1",
+  "condition_semantics": "none-no-expression-language",
+  "binding_semantics": "explicit-local-fixture-selection-v1",
+  "component_profiles": [],
+  "reference_resolution": [
+    {"field": "invocation.reference", "reference": "synthetic-basis.json#input", "fixture": "synthetic-basis.json", "member": "input", "preimage": "RFC8785-JSON-UTF8"},
+    {"field": "implementation.reference", "reference": "synthetic-basis.json#implementation", "fixture": "synthetic-basis.json", "member": "implementation", "preimage": "RFC8785-JSON-UTF8"},
+    {"field": "context.reference", "reference": "synthetic-basis.json#context", "fixture": "synthetic-basis.json", "member": "context", "preimage": "RFC8785-JSON-UTF8"},
+    {"field": "mapping.id", "reference": "https://example.org/mappings/refund", "revision": "1", "fixture": "synthetic-basis.json", "member": "mapping", "preimage": "RFC8785-JSON-UTF8"},
+    {"field": "evidence.artifact_ref", "reference": "https://example.org/local-fixtures/synthetic-basis#declaration", "fixture": "synthetic-basis.json", "member": "declaration", "preimage": "RFC8785-JSON-UTF8"}
+  ],
+  "implementation_constraints": {"name": "synthetic-refund-tool", "version": "1.0.0", "comparator": "exact-string", "visibility": "declared-not-measured"},
+  "required_context": ["account", "destination", "environment"],
+  "effect_definitions": [
+    {"category": "https://example.org/effects/funds-transfer/1", "operation": "https://example.org/operations/refund/1", "meaning": "declared possible refund of the given order to its original payment destination; not executed, authorized or transitively bounded"}
+  ],
+  "slot_definitions": [
+    {"namespace": "https://example.org/resource-types/order", "meaning": "opaque synthetic order identifier"},
+    {"namespace": "https://example.org/destination-types/payment", "meaning": "opaque synthetic payment destination; original-payment denotes only the destination declared in bound context, not a verified payee"},
+    {"namespace": "https://example.org/classification", "meaning": "synthetic classification label, not a verified sensitivity assessment"}
+  ],
+  "quantity_definitions": [
+    {"name": "https://example.org/quantities/amount", "requirement": "exactly-one-known-or-explicitly-unknown", "unit": "USD", "scale": "2", "value_min": "0", "value_max": "999999999999", "interpretation": "integer(value) times 10 to the power -2 USD; input amount_minor uses the same integer and currency convention"}
+  ],
+  "unknown_target_rule": "exact local effect_id plus exact quantity_name; no known/unknown collision or duplicate target",
+  "coverage_support": "direct-partial-only; bounded_claim and observed evidence need another supported profile",
+  "evidence_support": "declaration-only; accepted as a declaration, never as a verified provider observation",
+  "extensions_supported": [],
+  "io_policy": "no network fetches; references are opaque lookup keys in the fixed table, not general URI fragments or file paths"
+}

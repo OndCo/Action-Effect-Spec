@@ -1,0 +1,330 @@
+{
+  "spec_version": "0.1.0-draft.1",
+  "status": "editorial-design-vectors-not-a-conformance-run",
+  "vectors": [
+    {
+      "id": "V01",
+      "requirements": [
+        "CORE-001"
+      ],
+      "scenario": "Accepted description confused with permission",
+      "expected": "Return description processing status only; authority remains unestablished.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V02",
+      "requirements": [
+        "CORE-002"
+      ],
+      "scenario": "Signed declaration confused with true observation",
+      "expected": "Preserve declaration provenance; signature is not semantic verification.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V03",
+      "requirements": [
+        "CORE-003"
+      ],
+      "scenario": "Internal-read tuple mixed with external-send tuple",
+      "expected": "Reject recombined authority/effect interpretation; preserve each tuple.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V04",
+      "requirements": [
+        "CORE-004"
+      ],
+      "scenario": "One source and two destinations given without pairing",
+      "expected": "Require explicit tuples or supported collection semantics; no Cartesian product.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V05",
+      "requirements": [
+        "CORE-005"
+      ],
+      "scenario": "Unknown category or empty effects interpreted as safe",
+      "expected": "Retain unresolved coverage; do not infer harmlessness.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V06",
+      "requirements": [
+        "CORE-006"
+      ],
+      "scenario": "git push --force treated as proof of history rewrite",
+      "expected": "Describe conditional possibility, not observed mutation; rejected/no-op/fast-forward remain possible.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V07",
+      "requirements": [
+        "CORE-007"
+      ],
+      "scenario": "Partial trace supplied as complete descendant bound",
+      "expected": "Bound remains unestablished without a supported checker and exact assumptions.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V08",
+      "requirements": [
+        "CORE-008"
+      ],
+      "scenario": "Known transfer plus unknown destination",
+      "expected": "Retain both the transfer fact and destination uncertainty.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V09",
+      "requirements": [
+        "CORE-009"
+      ],
+      "scenario": "Duplicate JSON member or lone surrogate",
+      "expected": "Invalid input before lossy parsing; not semantic review.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V10",
+      "requirements": [
+        "CORE-010"
+      ],
+      "scenario": "Quantity -0, 01, exponent, currency change or overflow",
+      "expected": "Reject invalid representation/range; never round or exchange implicitly.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V11",
+      "requirements": [
+        "CORE-011"
+      ],
+      "scenario": "Confusable/case-folded identity without resolver",
+      "expected": "No implied identity equivalence.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V12",
+      "requirements": [
+        "CORE-012"
+      ],
+      "scenario": "Digest with changed relevant object or Unicode normalization",
+      "expected": "Mismatch or invalid binding; digest is not authorization.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V13",
+      "requirements": [
+        "CORE-013"
+      ],
+      "scenario": "One witness applied to untested future implementations",
+      "expected": "Applicability unestablished; require ecosystem version semantics and evidence.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V14",
+      "requirements": [
+        "CORE-014"
+      ],
+      "scenario": "Correct category on a different input/context/occurrence",
+      "expected": "Binding invalid; do not reuse merely by tool name.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V15",
+      "requirements": [
+        "CORE-015"
+      ],
+      "scenario": "Two reviewers used to erase conflicts or claim independence",
+      "expected": "Preserve evidence kinds, scope, conflicts and actual reviewer independence.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V16",
+      "requirements": [
+        "CORE-016"
+      ],
+      "scenario": "CEL false && error versus worker timeout",
+      "expected": "Honor CEL final-result semantics; host failure remains evaluation_failure.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V17",
+      "requirements": [
+        "CORE-017"
+      ],
+      "scenario": "Mapper crash represented as successful review",
+      "expected": "Report processing failure; withhold if required but award no semantic credit.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V18",
+      "requirements": [
+        "CORE-018"
+      ],
+      "scenario": "Human approve used to repair invalid proof",
+      "expected": "No proof validity or missing fact established by clicking approval.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V19",
+      "requirements": [
+        "CORE-019"
+      ],
+      "scenario": "Published mapping silently rewritten",
+      "expected": "New immutable revision required; retain prior meaning/history.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V20",
+      "requirements": [
+        "CORE-020"
+      ],
+      "scenario": "Changed relevant dependency without invalidation",
+      "expected": "Revalidate or invalidate; unrelated change exemption needs dependency coverage.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V21",
+      "requirements": [
+        "CORE-021"
+      ],
+      "scenario": "Expired trusted snapshot accepted as current",
+      "expected": "Enforce freshness boundary; no immediate offline revocation claim.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V22",
+      "requirements": [
+        "CORE-022"
+      ],
+      "scenario": "Cached mapping used after live grant revoked",
+      "expected": "Current authorization still required; cached semantics does not grant.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V23",
+      "requirements": [
+        "CORE-023"
+      ],
+      "scenario": "Unknown critical extension removed and request retried",
+      "expected": "Unsupported profile; no silent downgrade.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V24",
+      "requirements": [
+        "CORE-024"
+      ],
+      "scenario": "Oversized/deep input truncated and accepted",
+      "expected": "Explicit limit failure; not successful processing.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V25",
+      "requirements": [
+        "CORE-025"
+      ],
+      "scenario": "Evidence URL resolves to internal metadata endpoint",
+      "expected": "No automatic dereference/credential disclosure during description processing.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V26",
+      "requirements": [
+        "CORE-026"
+      ],
+      "scenario": "Locator-only telemetry assumed anonymous",
+      "expected": "Default off; internal locator remains potentially confidential.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V27",
+      "requirements": [
+        "CORE-027"
+      ],
+      "scenario": "HTTP timeout treated as non-execution and resent",
+      "expected": "Outcome unknown; provider contract determines reconciliation/idempotency.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V28",
+      "requirements": [
+        "CORE-028"
+      ],
+      "scenario": "Self-test badge presented as certified secure/legally compliant",
+      "expected": "Claim only named profile/suite/implementation and actual evaluation scope.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V29", "requirements": ["CORE-004"],
+      "scenario": "Duplicate effect IDs with different destinations or dangling relation endpoint",
+      "expected": "invalid_input; exact local lookup must have one correctly typed target, not first/last match.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V30", "requirements": ["CORE-004", "CORE-015"],
+      "scenario": "Duplicate evidence IDs or evidence_refs points outside the local evidence list",
+      "expected": "invalid_input without remote resolution; a resolved item still must support the claim.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V31", "requirements": ["CORE-012", "CORE-014"],
+      "scenario": "Hash enclosing fixture instead of selected member, or splice valid hashes from unrelated records",
+      "expected": "Reject mismatched preimage or unestablished combined binding; no accepted statement from disconnected hashes.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V32", "requirements": ["CORE-011", "CORE-012", "CORE-019"],
+      "scenario": "Same profile URL serves changed condition/identity semantics or wrong manifest digest",
+      "expected": "Do not establish effective profile; only configured version-specific content with matching digest applies.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V33", "requirements": ["CORE-020", "CORE-022"],
+      "scenario": "Description unchanged but checker/trust revision changed or evidence currentness unknown",
+      "expected": "Revalidate acceptance or invalidate it; bytes may remain cached but do not preserve authority or acceptance.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V34", "requirements": ["CORE-010"],
+      "scenario": "Required amount absent, same quantity name repeated, or scale interpreted as multiplication",
+      "expected": "No missing-as-zero or summation; duplicates/missing required target invalid; coefficient times ten to negative scale.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V35", "requirements": ["CORE-004", "CORE-008", "CORE-010"],
+      "scenario": "Unknown amount targets wrong effect/name, repeats a target, or conflicts with a known amount",
+      "expected": "Reject invalid or contradictory targets; preserve valid explicit unknowns without converting mapper failure to uncertainty.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V36", "requirements": ["CORE-015"],
+      "scenario": "Evidence has only artifact_ref or only artifact_digest",
+      "expected": "invalid_input; both required, and the digest must bind the selected artifact before it can support a claim.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V37", "requirements": ["CORE-023"],
+      "scenario": "Recognized critical extension lacks required payload; contrast unknown version and marker-only extension",
+      "expected": "Missing/malformed required payload is invalid_input; unknown version is unsupported_profile; supported marker-only has no payload key.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V38", "requirements": ["CORE-005", "CORE-007"],
+      "scenario": "Empty partial report compared with independently checked empty bound under a finite supported profile",
+      "expected": "Partial report proves no absence; checked empty bound establishes scoped absence only under its exact assumptions, never general safety.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V39", "requirements": ["CORE-019", "CORE-026"],
+      "scenario": "Sensitive published record withdrawn without reassigning its identifier",
+      "expected": "Safe tombstone and non-reassignment; no promise of indefinitely public payload or recall from third-party copies.",
+      "execution_status": "designed-not-executed"
+    },
+    {
+      "id": "V40", "requirements": ["CORE-028"],
+      "scenario": "Limited suite passes while mandatory obligation unsupported or target profile not frozen",
+      "expected": "Report limited/draft coverage and unsupported obligations; no full or stable conformance claim.",
+      "execution_status": "designed-not-executed"
+    }
+  ]
+}

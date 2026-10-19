@@ -1,0 +1,45 @@
+name: Offline consumers
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: consumers-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unit:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            node: '22'
+            python: '3.11'
+          - os: macos-latest
+            node: '24'
+            python: '3.13'
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python }}
+      - name: JavaScript consumer and adapter tests
+        run: node --test implementations/javascript/consumer.test.mjs implementations/javascript/cli.test.mjs
+      - name: Python consumer and adapter tests
+        run: python3 -B -W error -m unittest discover -s implementations/python/tests
+      - name: Check that tests did not change tracked inputs
+        run: git diff --exit-code

@@ -1,0 +1,466 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/action-effect-spec/0.1.0-draft.1/effect-description.schema.json",
+  "title": "Draft conditional effect description",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "spec_version",
+    "profile",
+    "profile_digest",
+    "record_id",
+    "invocation",
+    "implementation",
+    "mapping",
+    "context",
+    "coverage",
+    "effects",
+    "evidence",
+    "unknowns",
+    "relations",
+    "critical_extensions",
+    "extensions"
+  ],
+  "properties": {
+    "spec_version": {
+      "const": "0.1.0-draft.1"
+    },
+    "profile": {
+      "type": "string",
+      "format": "uri",
+      "minLength": 1
+    },
+    "profile_digest": {
+      "$ref": "#/$defs/digest"
+    },
+    "record_id": {
+      "type": "string",
+      "format": "uri",
+      "minLength": 1
+    },
+    "invocation": {
+      "$ref": "#/$defs/binding"
+    },
+    "implementation": {
+      "$ref": "#/$defs/binding"
+    },
+    "context": {
+      "$ref": "#/$defs/binding"
+    },
+    "mapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "revision",
+        "digest"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uri",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "digest": {
+          "$ref": "#/$defs/digest"
+        }
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope",
+        "completeness",
+        "assumptions",
+        "evidence_refs"
+      ],
+      "properties": {
+        "scope": {
+          "enum": [
+            "direct",
+            "transitive"
+          ]
+        },
+        "completeness": {
+          "enum": [
+            "partial",
+            "bounded_claim"
+          ]
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "maxItems": 64
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/evidenceRefs"
+        }
+      }
+    },
+    "effects": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "$ref": "#/$defs/effect"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "$ref": "#/$defs/evidence"
+      }
+    },
+    "unknowns": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "scope"
+        ],
+        "properties": {
+          "code": {
+            "enum": [
+              "unmapped",
+              "missing_context",
+              "unresolved_identity",
+              "unobserved_descendants",
+              "conflicting_evidence",
+              "unsupported_implementation",
+              "unknown_quantity"
+            ]
+          },
+          "scope": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["effect_id", "quantity_name"],
+            "properties": {
+              "effect_id": {"type": "string", "minLength": 1},
+              "quantity_name": {"type": "string", "format": "uri", "minLength": 1}
+            }
+          }
+        },
+        "allOf": [{
+          "if": {"properties": {"code": {"const": "unknown_quantity"}}},
+          "then": {"required": ["target"]},
+          "else": {"not": {"required": ["target"]}}
+        }]
+      }
+    },
+    "relations": {
+      "type": "array",
+      "maxItems": 1024,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "from",
+          "to",
+          "kind",
+          "evidence_refs"
+        ],
+        "properties": {
+          "from": {
+            "type": "string",
+            "minLength": 1
+          },
+          "to": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "type": "string",
+            "format": "uri",
+            "minLength": 1
+          },
+          "evidence_refs": {
+            "$ref": "#/$defs/evidenceRefs"
+          }
+        }
+      }
+    },
+    "critical_extensions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "maxItems": 64
+    },
+    "extensions": {
+      "type": "object",
+      "propertyNames": {
+        "format": "uri"
+      },
+      "maxProperties": 64
+    }
+  },
+  "$defs": {
+    "digest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "algorithm",
+        "value"
+      ],
+      "properties": {
+        "algorithm": {
+          "const": "sha-256"
+        },
+        "value": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reference",
+        "digest"
+      ],
+      "properties": {
+        "reference": {
+          "type": "string",
+          "minLength": 1
+        },
+        "digest": {
+          "$ref": "#/$defs/digest"
+        }
+      }
+    },
+    "slot": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "state",
+            "namespace",
+            "value"
+          ],
+          "properties": {
+            "state": {
+              "const": "known"
+            },
+            "namespace": {
+              "type": "string",
+              "format": "uri",
+              "minLength": 1
+            },
+            "value": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "state"
+          ],
+          "properties": {
+            "state": {
+              "const": "none"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "state",
+            "reason"
+          ],
+          "properties": {
+            "state": {
+              "const": "unknown"
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      ]
+    },
+    "evidenceRefs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "maxItems": 256
+    },
+    "quantity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "value",
+        "unit",
+        "scale"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "format": "uri",
+          "minLength": 1
+        },
+        "value": {
+          "type": "string",
+          "pattern": "^(0|-?[1-9][0-9]{0,77})$",
+          "maxLength": 79
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scale": {
+          "type": "string",
+          "pattern": "^(0|[1-9]|1[0-8])$"
+        }
+      }
+    },
+    "effect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "effect_id",
+        "category",
+        "operation",
+        "resource",
+        "destination",
+        "data_class",
+        "quantities",
+        "modality",
+        "evidence_refs"
+      ],
+      "properties": {
+        "effect_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category": {
+          "type": "string",
+          "format": "uri",
+          "minLength": 1
+        },
+        "operation": {
+          "type": "string",
+          "format": "uri",
+          "minLength": 1
+        },
+        "resource": {
+          "$ref": "#/$defs/slot"
+        },
+        "destination": {
+          "$ref": "#/$defs/slot"
+        },
+        "data_class": {
+          "$ref": "#/$defs/slot"
+        },
+        "quantities": {
+          "type": "array",
+          "maxItems": 64,
+          "items": {
+            "$ref": "#/$defs/quantity"
+          }
+        },
+        "modality": {
+          "enum": [
+            "may",
+            "observed"
+          ]
+        },
+        "occurrence_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/evidenceRefs"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "modality": {
+                "const": "observed"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "occurrence_ref"
+            ]
+          }
+        }
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_id",
+        "kind",
+        "source",
+        "artifact_ref",
+        "artifact_digest",
+        "scope"
+      ],
+      "properties": {
+        "evidence_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "declaration",
+            "observation",
+            "analysis",
+            "review"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "format": "uri",
+          "minLength": 1
+        },
+        "artifact_ref": {
+          "type": "string",
+          "format": "uri",
+          "minLength": 1
+        },
+        "artifact_digest": {
+          "$ref": "#/$defs/digest"
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}
