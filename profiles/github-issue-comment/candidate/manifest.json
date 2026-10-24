@@ -1,0 +1,89 @@
+{
+  "manifestVersion": 1,
+  "candidateId": "github-issue-comment-1-candidate.1",
+  "status": "candidate",
+  "source": {
+    "repository": "https://github.com/OndCo/Action-Effect-Spec",
+    "revision": "a9b86f4b529a5e330c2a9bf1b8c4c259a7b36e40"
+  },
+  "profile": {
+    "id": "https://github.com/OndCo/Action-Effect-Spec/blob/v0.2.0-draft.1/profiles/github-issue-comment/profile.json",
+    "version": "github-issue-comment/1",
+    "coreSpec": "0.1.0-draft.1",
+    "mappingRevision": "1",
+    "digest": {
+      "algorithm": "sha-256",
+      "preimage": "complete original profile.json; safe-integer RFC 8785 subset; UTF-8",
+      "value": "c4c062d8181d3e0d2cd04a0667ec6711d159bd61db5eeeae95217918e80350b3"
+    }
+  },
+  "claims": {
+    "authority": "not_evaluated",
+    "fullCoreConformance": false,
+    "stable": false,
+    "securityCertified": false,
+    "externallyIndependentEvaluations": 0
+  },
+  "scope": {
+    "operation": "create_issue_comment",
+    "modality": "may",
+    "coverage": "direct-partial",
+    "nativeLanes": ["sdk", "mcp"],
+    "identityComparison": "exact-case-sensitive",
+    "maximumBodyBytes": 8192,
+    "maximumIssueNumber": 2147483647,
+    "referenceResolution": "configured-local-complete-objects-no-network",
+    "unknownScope": "provider notifications, webhooks and internal descendants",
+    "exclusions": [
+      "authority grants, signatures, CEL and current revocation",
+      "remote registries, remote reference resolution and runtime enforcement",
+      "arbitrary GitHub operations or caller-selected endpoints",
+      "provider observations, transitive completeness and checked effect bounds",
+      "SaaS implementation attestation, DLP and cross-organization atomicity",
+      "production readiness, security certification and external independent evaluation"
+    ]
+  },
+  "compatibility": {
+    "replacesWireProfile": false,
+    "wireIdentifiers": "Original profile URI, github-issue-comment/1, mapping revision 1 and core 0.1.0-draft.1 remain unchanged.",
+    "refundContracts": "offline-consumer-v1 stays default; offline-consumer-v1.1 stays opt-in. Neither refund consumer implements the GitHub domain.",
+    "profileDigest": "Descriptions still hash the complete original profile.json, not this sidecar or the README. Component byte hashes are additional archival pins.",
+    "candidateIdentity": "This candidate ID identifies a frozen sidecar only. Changed semantics or components require a new revision, never reassignment of an old identifier."
+  },
+  "failureSemantics": {
+    "nativeShape": "invalid_input/native_input",
+    "otherShapedMcpTool": "unsupported_profile/operation",
+    "missingContext": "untrusted_evidence/missing_context",
+    "implementationBinding": "untrusted_evidence/implementation_binding",
+    "descriptionBinding": "untrusted_evidence/description_binding",
+    "unknownCriticalExtension": "unsupported_profile/critical_extension",
+    "requiredExtensionPayload": "invalid_input/structure",
+    "operationalFailure": "evaluation_failure/internal_error",
+    "resourceLimit": "evaluation_failure/limit_exceeded",
+    "acceptance": "accepted_partial/declared_partial; authority:not_evaluated",
+    "precedence": "Preserve the original profile and selected consumer contract. This sidecar adds no description-processing stage and changes no failure precedence."
+  },
+  "hashRule": "sha-256:raw-file-bytes",
+  "components": [
+    {
+      "role": "core-specification",
+      "path": "SPEC.md",
+      "sha256": "7e391c1ac5f1ed6edcf85a39aa39a1a2e852678da67baf3691927daa807ddca6"
+    },
+    {
+      "role": "core-structure",
+      "path": "schemas/effect-description.schema.json",
+      "sha256": "0bb7797509174f2f24f534e76ac302fe6ed92e28dcd1e6b92322b2bf1abdbe5e"
+    },
+    {
+      "role": "domain-manifest",
+      "path": "profiles/github-issue-comment/profile.json",
+      "sha256": "b3aa4d5ca35f3c3a2436765d1b7c8df917695b5956a4ff544e4f82e713f7a831"
+    },
+    {
+      "role": "domain-semantics",
+      "path": "profiles/github-issue-comment/README.md",
+      "sha256": "8ca3eadc8f38e220c006ae22cc3f4737250379233271fb5345b68a67e6f3a691"
+    }
+  ]
+}

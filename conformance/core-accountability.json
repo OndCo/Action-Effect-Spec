@@ -1,0 +1,3056 @@
+{
+  "format": "core-accountability/1",
+  "spec": {
+    "path": "SPEC.md",
+    "version": "0.1.0-draft.1",
+    "revision": "a9b86f4b529a5e330c2a9bf1b8c4c259a7b36e40"
+  },
+  "claims": {
+    "scope": "partial",
+    "fullCoreConformance": false,
+    "securityCertified": false,
+    "externallyIndependentEvaluations": 0,
+    "testExecution": "not_performed_by_integrity_checker"
+  },
+  "roles": {
+    "producer": "Describes effects; no arbitrary effect inference or trusted SaaS identity follows.",
+    "registry_publisher": "Publishes revisions and evidence. No registry service is implemented by the assessed targets.",
+    "evidence_checker": "Checks declared local bindings within a finite profile, not signatures, CEL, observations or complete bounds.",
+    "consumer": "Interprets a description within configured support; acceptance is not authorization.",
+    "authority": "Owns current grants, expiry, revocation, quota and replay. Not implemented by any assessed target.",
+    "enforcement_point": "Controls dispatch. Not implemented by any assessed target; Bench policy/gate integrations are outside this matrix.",
+    "observer": "Binds provider outcomes to occurrences. Not implemented by any assessed target."
+  },
+  "repositories": {
+    "spec": {
+      "url": "https://github.com/OndCo/Action-Effect-Spec",
+      "revision": "a9b86f4b529a5e330c2a9bf1b8c4c259a7b36e40",
+      "verification": "local_file_integrity_only"
+    },
+    "bench": {
+      "url": "https://github.com/OndCo/Action-Effect-Bench",
+      "revision": "6d4f3c358ca5f68040a1416d751328e9aab041f5",
+      "verification": "external_pinned_not_checked"
+    }
+  },
+  "implementations": {
+    "javascript_refund": {
+      "repository": "spec",
+      "roles": [
+        "consumer",
+        "evidence_checker"
+      ],
+      "contracts": [
+        "offline-consumer-v1",
+        "offline-consumer-v1.1"
+      ],
+      "profile": "https://example.org/profiles/refund/0.1.0-draft.1",
+      "authority": "not_evaluated",
+      "unsupportedCapabilities": [
+        "authority_grants",
+        "signatures",
+        "cel",
+        "current_revocation",
+        "remote_registries",
+        "enforcement",
+        "provider_observation",
+        "transitive_bounds"
+      ],
+      "scope": "JavaScript finite offline USD refund declaration; v1 default, v1.1 opt-in. Does not implement the GitHub profile."
+    },
+    "python_refund": {
+      "repository": "spec",
+      "roles": [
+        "consumer",
+        "evidence_checker"
+      ],
+      "contracts": [
+        "offline-consumer-v1",
+        "offline-consumer-v1.1"
+      ],
+      "profile": "https://example.org/profiles/refund/0.1.0-draft.1",
+      "authority": "not_evaluated",
+      "unsupportedCapabilities": [
+        "authority_grants",
+        "signatures",
+        "cel",
+        "current_revocation",
+        "remote_registries",
+        "enforcement",
+        "provider_observation",
+        "transitive_bounds"
+      ],
+      "scope": "Separately written Python finite offline USD refund declaration; not an external institutional evaluation or a GitHub domain implementation."
+    },
+    "github_domain": {
+      "repository": "bench",
+      "roles": [
+        "consumer",
+        "producer",
+        "evidence_checker"
+      ],
+      "contracts": [
+        "github-issue-comment/1"
+      ],
+      "profile": "https://github.com/OndCo/Action-Effect-Spec/blob/v0.2.0-draft.1/profiles/github-issue-comment/profile.json",
+      "authority": "not_evaluated",
+      "unsupportedCapabilities": [
+        "authority_grants",
+        "signatures",
+        "cel",
+        "current_revocation",
+        "remote_registries",
+        "enforcement",
+        "provider_observation",
+        "transitive_bounds"
+      ],
+      "scope": "Pinned external Python project/check consumer in Bench runtime-pilot, reusing Spec core utilities. No Bench files or tests are verified or executed by the Spec-local checker. Authorizer, provider, ledger and OPA are not assessed here."
+    }
+  },
+  "files": {
+    "spec": {
+      "repository": "spec",
+      "path": "SPEC.md",
+      "sha256": "7e391c1ac5f1ed6edcf85a39aa39a1a2e852678da67baf3691927daa807ddca6"
+    },
+    "js-consumer": {
+      "repository": "spec",
+      "path": "implementations/javascript/consumer.mjs",
+      "sha256": "7ccfb303b6c288c301718952bf384e014808485eed2eda710f0d1d37c2c82bcd"
+    },
+    "js-json": {
+      "repository": "spec",
+      "path": "implementations/javascript/strict-json.mjs",
+      "sha256": "5cda89a8a43d0d633348fd2729c4ed733eb856f95279e9a649e2be1d3f5e6c9a"
+    },
+    "js-schema": {
+      "repository": "spec",
+      "path": "implementations/javascript/schema.mjs",
+      "sha256": "622f50ec231ec81b4be14a8c03885b425c70e9625995e59db7bc5dcc09411ec3"
+    },
+    "js-cli": {
+      "repository": "spec",
+      "path": "implementations/javascript/cli.mjs",
+      "sha256": "cbb9c6a8e09e9dc135b9c3ede7c207f426c43a14033c079a46343b2d75df2101"
+    },
+    "js-tests": {
+      "repository": "spec",
+      "path": "implementations/javascript/consumer.test.mjs",
+      "sha256": "48d9af8e551bb6ff5a9c475602cf3b9def18d3296dba240c3ad8fc25b1db716e"
+    },
+    "js-v11-tests": {
+      "repository": "spec",
+      "path": "implementations/javascript/consumer-v1.1.test.mjs",
+      "sha256": "dd616262e01e4a8a4a9002133984356a488e43febda4687e19cf2d34511ab181"
+    },
+    "js-cli-tests": {
+      "repository": "spec",
+      "path": "implementations/javascript/cli.test.mjs",
+      "sha256": "c95cd7d2cdc11e01f89bf6984f6a07473f3e2028cda3312c4dac0b2c3529adc1"
+    },
+    "py-consumer": {
+      "repository": "spec",
+      "path": "implementations/python/offline_consumer/consumer.py",
+      "sha256": "51e294388b704ec7ae3d2999deccc300c85ce1e29b364b2a3c1b067991fddd6b"
+    },
+    "py-config": {
+      "repository": "spec",
+      "path": "implementations/python/offline_consumer/configuration.py",
+      "sha256": "cb4d2f084c86a4cdde550d5687f4b269f3aa9de659ef3bff90dec71f562b1252"
+    },
+    "py-projection": {
+      "repository": "spec",
+      "path": "implementations/python/offline_consumer/projection.py",
+      "sha256": "a696b066f5165acb45721dde274c5c8f77d609741d08ef63f7cf1d7b7713f92e"
+    },
+    "py-references": {
+      "repository": "spec",
+      "path": "implementations/python/offline_consumer/references.py",
+      "sha256": "1c0e4e2d1bcc9d8f6c7679bf36164fb926b64a76ee47a5ff446bb08671abe5b7"
+    },
+    "py-json": {
+      "repository": "spec",
+      "path": "implementations/python/offline_consumer/json_subset.py",
+      "sha256": "954d2f244fe511c56c223dfada64cd5dd7fe65c8c3fae09ca3fa5a7d22150f62"
+    },
+    "py-structure": {
+      "repository": "spec",
+      "path": "implementations/python/offline_consumer/structure.py",
+      "sha256": "56b7f715f99f27afc1ab4a2bc7dcc8479647fca95f9efbc429799af2a0fbff21"
+    },
+    "py-adapter": {
+      "repository": "spec",
+      "path": "implementations/python/offline_consumer/adapter.py",
+      "sha256": "e7880716ce397cc0bc711624523757c6037cfaf8d1d8c957ab34f4cfe34462fa"
+    },
+    "py-errors": {
+      "repository": "spec",
+      "path": "implementations/python/offline_consumer/errors.py",
+      "sha256": "5c82a9f101b148a80d29755fd07ec2a79ca2efe8ac7f7a26f301edbd9208976b"
+    },
+    "py-tests": {
+      "repository": "spec",
+      "path": "implementations/python/tests/test_consumer.py",
+      "sha256": "4c3f7d138bfff4bd78bc678bf76f1f3c707bbabf18178e9ed2155a47b23b97e2"
+    },
+    "py-v11-tests": {
+      "repository": "spec",
+      "path": "implementations/python/tests/test_consumer_v1_1.py",
+      "sha256": "da7e1b5d8bb88763f30d388b2cd60a4534fead4a9770bb4d4bfbf0d4eea805ca"
+    },
+    "py-ref-tests": {
+      "repository": "spec",
+      "path": "implementations/python/tests/test_references.py",
+      "sha256": "f7774c70a16c88cc6f164da1ff73e493ca8679df0737c66f199e40ec2ee65529"
+    },
+    "py-structure-tests": {
+      "repository": "spec",
+      "path": "implementations/python/tests/test_structure.py",
+      "sha256": "6d3a1f5eda6c00580d85fda63c1085476888ec8c1d66a4def824c66aa6f88a08"
+    },
+    "py-json-tests": {
+      "repository": "spec",
+      "path": "implementations/python/tests/test_json_subset.py",
+      "sha256": "6c40afa0dce8cbada12a96de5cafd1d0d74dd69febcc9cea066eef7c300de140"
+    },
+    "py-cli-tests": {
+      "repository": "spec",
+      "path": "implementations/python/tests/test_cli.py",
+      "sha256": "1c07b580601ddd1e9322a7a2334e8d1a200c4517643a063b21c905b915530e7c"
+    },
+    "bench-consumer": {
+      "repository": "bench",
+      "path": "runtime-pilot/python/consumer.py"
+    },
+    "bench-profile": {
+      "repository": "bench",
+      "path": "runtime-pilot/python/profile_adapter.py"
+    },
+    "bench-tests": {
+      "repository": "bench",
+      "path": "runtime-pilot/tests/test_python_profile.py"
+    }
+  },
+  "anchors": {
+    "js-check": {
+      "file": "js-consumer",
+      "kind": "implementation",
+      "selector": "export function createConsumer(options = {}) {"
+    },
+    "js-result": {
+      "file": "js-consumer",
+      "kind": "implementation",
+      "selector": "const result = (status, reason) => ({ status, reason, authority: 'not_evaluated' });"
+    },
+    "js-hello": {
+      "file": "js-consumer",
+      "kind": "implementation",
+      "selector": "export function capabilities(options = {}) {"
+    },
+    "js-projection": {
+      "file": "js-consumer",
+      "kind": "implementation",
+      "selector": "function projection(doc, basis) {"
+    },
+    "js-bind": {
+      "file": "js-consumer",
+      "kind": "implementation",
+      "selector": "function bindArtifacts(doc, profile, basis) {"
+    },
+    "js-refs": {
+      "file": "js-consumer",
+      "kind": "implementation",
+      "selector": "function references(doc) {"
+    },
+    "js-parse": {
+      "file": "js-json",
+      "kind": "implementation",
+      "selector": "export function parseStrict(bytes, maxBytes = DOCUMENT_LIMIT) {"
+    },
+    "js-canonical": {
+      "file": "js-json",
+      "kind": "implementation",
+      "selector": "export function canonicalBytes(value) {"
+    },
+    "js-structure": {
+      "file": "js-schema",
+      "kind": "implementation",
+      "selector": "export function compileBundledSchema(root) {"
+    },
+    "js-frame": {
+      "file": "js-cli",
+      "kind": "implementation",
+      "selector": "export function handleFrame(frame, check, options = {}) {"
+    },
+    "py-check": {
+      "file": "py-consumer",
+      "kind": "implementation",
+      "selector": "    def _evaluate(self, raw: bytes, diagnostic: bool) -> Dict[str, Any]:"
+    },
+    "py-result": {
+      "file": "py-errors",
+      "kind": "implementation",
+      "selector": "def outcome(status: str, reason: str, **details: Any) -> Dict[str, Any]:"
+    },
+    "py-hello": {
+      "file": "py-consumer",
+      "kind": "implementation",
+      "selector": "    def hello(self=None) -> Dict[str, Any]:"
+    },
+    "py-projection": {
+      "file": "py-projection",
+      "kind": "implementation",
+      "selector": "def validate_projection(document: Dict[str, Any], snapshot: Snapshot) -> None:"
+    },
+    "py-bind": {
+      "file": "py-config",
+      "kind": "implementation",
+      "selector": "    def validate_bindings(self, document: Dict[str, Any]) -> None:"
+    },
+    "py-startup": {
+      "file": "py-config",
+      "kind": "implementation",
+      "selector": "    def from_bytes(cls, basis_bytes: bytes, manifest_bytes: bytes) -> \"Snapshot\":"
+    },
+    "py-applicability": {
+      "file": "py-config",
+      "kind": "implementation",
+      "selector": "def _refund_inputs(basis: Dict[str, Any], manifest: Dict[str, Any]) -> RefundInputs:"
+    },
+    "py-refs": {
+      "file": "py-references",
+      "kind": "implementation",
+      "selector": "def validate_references(document: Dict[str, Any], amount_name: str) -> None:"
+    },
+    "py-parse": {
+      "file": "py-json",
+      "kind": "implementation",
+      "selector": "def parse_json(raw: bytes, *, max_bytes: int = MAX_DOCUMENT_BYTES,"
+    },
+    "py-canonical": {
+      "file": "py-json",
+      "kind": "implementation",
+      "selector": "def canonical_bytes(value: Any) -> bytes:"
+    },
+    "py-structure": {
+      "file": "py-structure",
+      "kind": "implementation",
+      "selector": "def validate_structure(document: Any) -> None:"
+    },
+    "py-frame": {
+      "file": "py-adapter",
+      "kind": "implementation",
+      "selector": "def _response(raw: Optional[bytes], consumer: Consumer) -> Dict[str, Any]:"
+    },
+    "py-serve": {
+      "file": "py-adapter",
+      "kind": "implementation",
+      "selector": "def serve(source: BinaryIO, destination: BinaryIO, consumer: Consumer) -> None:"
+    },
+    "bench-check": {
+      "file": "bench-consumer",
+      "kind": "implementation",
+      "selector": "def process_line(raw: bytes) -> Dict[str, Any]:"
+    },
+    "bench-result": {
+      "file": "bench-consumer",
+      "kind": "implementation",
+      "selector": "def outcome(status: str, reason: str, **details: Any) -> Dict[str, Any]:"
+    },
+    "bench-stream": {
+      "file": "bench-consumer",
+      "kind": "implementation",
+      "selector": "def run(source: BinaryIO, destination: BinaryIO) -> None:"
+    },
+    "bench-native": {
+      "file": "bench-profile",
+      "kind": "implementation",
+      "selector": "    def validate_native(self, native: Any) -> Dict[str, Any]:"
+    },
+    "bench-context": {
+      "file": "bench-profile",
+      "kind": "implementation",
+      "selector": "    def _context(self, context: Any) -> None:"
+    },
+    "bench-project": {
+      "file": "bench-profile",
+      "kind": "implementation",
+      "selector": "    def project(self, native: Any, context: Any) -> Dict[str, Any]:"
+    },
+    "bench-validate": {
+      "file": "bench-profile",
+      "kind": "implementation",
+      "selector": "    def validate_description(self, description: Dict[str, Any]) -> None:"
+    },
+    "bench-expected": {
+      "file": "bench-profile",
+      "kind": "implementation",
+      "selector": "    def expected_description(self, native: Dict[str, Any], context: Dict[str, Any],"
+    },
+    "js-accept": {
+      "file": "js-tests",
+      "kind": "test",
+      "selector": "test('bound partial declaration accepted without a permission field',"
+    },
+    "js-quantity-shape": {
+      "file": "js-tests",
+      "kind": "test",
+      "selector": "test('extra fields, non-URI profiles and malformed quantity coefficients fail shape checks',"
+    },
+    "js-ids": {
+      "file": "js-tests",
+      "kind": "test",
+      "selector": "test('effect and evidence IDs are unique and locally resolved',"
+    },
+    "js-quantity-refs": {
+      "file": "js-tests",
+      "kind": "test",
+      "selector": "test('quantity identities cannot duplicate or be both known and unknown',"
+    },
+    "js-critical": {
+      "file": "js-tests",
+      "kind": "test",
+      "selector": "test('critical extensions remain unsupported rather than silently ignored',"
+    },
+    "js-profile-pin": {
+      "file": "js-tests",
+      "kind": "test",
+      "selector": "test('profile content is pinned, not trusted merely because the URI matches',"
+    },
+    "js-evidence-fields": {
+      "file": "js-tests",
+      "kind": "test",
+      "selector": "test('evidence references and digests both required',"
+    },
+    "js-binding": {
+      "file": "js-tests",
+      "kind": "test",
+      "selector": "test('bound components are recomputed, no remote references are followed',"
+    },
+    "js-coupled": {
+      "file": "js-tests",
+      "kind": "test",
+      "selector": "test('destination, amount and currency changes fail the coupled projection',"
+    },
+    "js-missing-amount": {
+      "file": "js-tests",
+      "kind": "test",
+      "selector": "test('missing required amount cannot silently mean zero',"
+    },
+    "js-unknown": {
+      "file": "js-tests",
+      "kind": "test",
+      "selector": "test('unknown amount is accepted only with matching missing-source and exact target',"
+    },
+    "js-unknown-disagrees": {
+      "file": "js-tests",
+      "kind": "test",
+      "selector": "test('an explicit unknown against an available amount is disagreement, not absent structure',"
+    },
+    "js-uri": {
+      "file": "js-tests",
+      "kind": "test",
+      "selector": "test('URI syntax validates components without dereferencing or normalizing identifiers',"
+    },
+    "js-scope": {
+      "file": "js-tests",
+      "kind": "test",
+      "selector": "test('an observation or bound is explicitly outside this declaration profile',"
+    },
+    "js-duplicate": {
+      "file": "js-tests",
+      "kind": "test",
+      "selector": "test('duplicate decoded keys fail even when spelling differs',"
+    },
+    "js-utf8": {
+      "file": "js-tests",
+      "kind": "test",
+      "selector": "test('invalid UTF-8, BOM and lone surrogate keys/values fail',"
+    },
+    "js-utf16": {
+      "file": "js-tests",
+      "kind": "test",
+      "selector": "test('canonicalization sorts by UTF-16 code units, not code points',"
+    },
+    "js-normalization": {
+      "file": "js-tests",
+      "kind": "test",
+      "selector": "test('canonicalization preserves Unicode normalization differences',"
+    },
+    "js-numeric": {
+      "file": "js-tests",
+      "kind": "test",
+      "selector": "test('integer boundaries accepted and other valid numeric forms unsupported',"
+    },
+    "js-syntax": {
+      "file": "js-tests",
+      "kind": "test",
+      "selector": "test('malformed JSON tokens cannot be converted to numeric uncertainty',"
+    },
+    "js-depth": {
+      "file": "js-tests",
+      "kind": "test",
+      "selector": "test('container depth 64 accepted, depth 65 explicitly fails',"
+    },
+    "js-bytes": {
+      "file": "js-tests",
+      "kind": "test",
+      "selector": "test('oversized input is bounded before parsing',"
+    },
+    "js-v11-hello": {
+      "file": "js-v11-tests",
+      "kind": "test",
+      "selector": "test('v1.1 API and adapter hello identify the contract, not a new wire schema',"
+    },
+    "js-compat": {
+      "file": "js-v11-tests",
+      "kind": "test",
+      "selector": "test('default and explicit v1 APIs preserve exact results and legacy null fallback',"
+    },
+    "js-applicability": {
+      "file": "js-v11-tests",
+      "kind": "test",
+      "selector": "test('unsupported fixture scalars and absent nested fields load but fail applicability',"
+    },
+    "js-no-cartesian": {
+      "file": "js-v11-tests",
+      "kind": "test",
+      "selector": "test('paired defects: cardinality does not select a good tuple over a coupled mismatch',"
+    },
+    "js-missing-descendants": {
+      "file": "js-v11-tests",
+      "kind": "test",
+      "selector": "test('earlier document gates still precede final applicability and missing amounts',"
+    },
+    "js-recovery": {
+      "file": "js-cli-tests",
+      "kind": "test",
+      "selector": "test('CLI works from another cwd and recovers after a malformed frame',"
+    },
+    "js-internal": {
+      "file": "js-cli-tests",
+      "kind": "test",
+      "selector": "test('unexpected handler failure stays an evaluation failure and never echoes its error text',"
+    },
+    "js-frame-limit": {
+      "file": "js-cli-tests",
+      "kind": "test",
+      "selector": "test('oversized frame is drained and next request is still processed',"
+    },
+    "py-accept": {
+      "file": "py-tests",
+      "kind": "test",
+      "selector": "    def test_public_example_exact_result(self):"
+    },
+    "py-capabilities": {
+      "file": "py-tests",
+      "kind": "test",
+      "selector": "    def test_exact_capabilities_do_not_grant_authority(self):"
+    },
+    "py-diagnostic": {
+      "file": "py-tests",
+      "kind": "test",
+      "selector": "    def test_canonicalize_is_not_description_acceptance(self):"
+    },
+    "py-scope": {
+      "file": "py-tests",
+      "kind": "test",
+      "selector": "    def test_scope_observation_and_nondeclaration_evidence_are_unsupported(self):"
+    },
+    "py-critical": {
+      "file": "py-tests",
+      "kind": "test",
+      "selector": "    def test_critical_profile_and_scope_precedence(self):"
+    },
+    "py-binding-keys": {
+      "file": "py-tests",
+      "kind": "test",
+      "selector": "    def test_all_binding_references_are_finite_exact_lookup_keys(self):"
+    },
+    "py-digest-selection": {
+      "file": "py-tests",
+      "kind": "test",
+      "selector": "    def test_selected_member_digests_not_enclosing_file_or_references(self):"
+    },
+    "py-full-binding": {
+      "file": "py-tests",
+      "kind": "test",
+      "selector": "    def test_complete_members_including_uninterpreted_metadata_are_bound(self):"
+    },
+    "py-issuer": {
+      "file": "py-tests",
+      "kind": "test",
+      "selector": "    def test_every_evidence_item_must_match_the_declaration_source(self):"
+    },
+    "py-applicable": {
+      "file": "py-tests",
+      "kind": "test",
+      "selector": "    def test_configured_order_amount_context_and_issuer_can_change(self):"
+    },
+    "py-bad-applicability": {
+      "file": "py-tests",
+      "kind": "test",
+      "selector": "    def test_applicability_checks_all_required_fixture_values(self):"
+    },
+    "py-amount-range": {
+      "file": "py-tests",
+      "kind": "test",
+      "selector": "    def test_amount_applicability_range_and_string_type(self):"
+    },
+    "py-coupled": {
+      "file": "py-tests",
+      "kind": "test",
+      "selector": "    def test_projection_tuple_is_coupled_and_exact(self):"
+    },
+    "py-cardinality": {
+      "file": "py-tests",
+      "kind": "test",
+      "selector": "    def test_exactly_one_effect_no_relations_and_explicit_support(self):"
+    },
+    "py-unknowns": {
+      "file": "py-tests",
+      "kind": "test",
+      "selector": "    def test_unknown_descendants_are_required_and_other_unknowns_are_retained(self):"
+    },
+    "py-amount-mismatch": {
+      "file": "py-tests",
+      "kind": "test",
+      "selector": "    def test_wrong_represented_amount_unit_or_scale(self):"
+    },
+    "py-missing-amount": {
+      "file": "py-tests",
+      "kind": "test",
+      "selector": "    def test_missing_amount_representation_is_final_domain_structure_error(self):"
+    },
+    "py-unknown-amount": {
+      "file": "py-tests",
+      "kind": "test",
+      "selector": "    def test_absent_fixture_amount_requires_exact_unknown_representation(self):"
+    },
+    "py-unknown-disagrees": {
+      "file": "py-tests",
+      "kind": "test",
+      "selector": "    def test_unknown_does_not_replace_available_known_amount(self):"
+    },
+    "py-metadata": {
+      "file": "py-tests",
+      "kind": "test",
+      "selector": "    def test_noncritical_metadata_is_hashed_without_widening_semantics(self):"
+    },
+    "py-no-cache": {
+      "file": "py-tests",
+      "kind": "test",
+      "selector": "    def test_results_are_fresh_not_an_acceptance_cache(self):"
+    },
+    "py-profile-pin": {
+      "file": "py-tests",
+      "kind": "test",
+      "selector": "    def test_manifest_is_pinned_over_complete_canonical_content(self):"
+    },
+    "py-id-namespaces": {
+      "file": "py-ref-tests",
+      "kind": "test",
+      "selector": "    def test_effect_and_evidence_namespaces_are_separate(self):"
+    },
+    "py-duplicate-effects": {
+      "file": "py-ref-tests",
+      "kind": "test",
+      "selector": "    def test_duplicate_effect_ids(self):"
+    },
+    "py-duplicate-evidence": {
+      "file": "py-ref-tests",
+      "kind": "test",
+      "selector": "    def test_duplicate_evidence_ids(self):"
+    },
+    "py-ref-targets": {
+      "file": "py-ref-tests",
+      "kind": "test",
+      "selector": "    def test_every_relation_endpoint_must_resolve(self):"
+    },
+    "py-evidence-refs": {
+      "file": "py-ref-tests",
+      "kind": "test",
+      "selector": "    def test_every_evidence_reference_must_resolve(self):"
+    },
+    "py-quantity-refs": {
+      "file": "py-ref-tests",
+      "kind": "test",
+      "selector": "    def test_known_unknown_collision_and_duplicate_unknown_targets(self):"
+    },
+    "py-id-exact": {
+      "file": "py-ref-tests",
+      "kind": "test",
+      "selector": "    def test_identifiers_compare_exactly_without_casefold_or_normalization(self):"
+    },
+    "py-shape": {
+      "file": "py-structure-tests",
+      "kind": "test",
+      "selector": "    def test_public_example_is_structurally_valid(self):"
+    },
+    "py-fields": {
+      "file": "py-structure-tests",
+      "kind": "test",
+      "selector": "    def test_every_required_member_and_extra_member(self):"
+    },
+    "py-quantity-syntax": {
+      "file": "py-structure-tests",
+      "kind": "test",
+      "selector": "    def test_quantity_integer_string_and_scale_grammar(self):"
+    },
+    "py-array-limits": {
+      "file": "py-structure-tests",
+      "kind": "test",
+      "selector": "    def test_array_types_bounds_and_unique_string_arrays(self):"
+    },
+    "py-relation-limits": {
+      "file": "py-structure-tests",
+      "kind": "test",
+      "selector": "    def test_relation_shape_limits_and_reference_arrays(self):"
+    },
+    "py-json-values": {
+      "file": "py-json-tests",
+      "kind": "test",
+      "selector": "    def test_supported_values_and_integer_boundaries(self):"
+    },
+    "py-json-duplicate": {
+      "file": "py-json-tests",
+      "kind": "test",
+      "selector": "    def test_duplicate_decoded_keys_at_any_depth(self):"
+    },
+    "py-utf8": {
+      "file": "py-json-tests",
+      "kind": "test",
+      "selector": "    def test_invalid_utf8_and_bom(self):"
+    },
+    "py-surrogate": {
+      "file": "py-json-tests",
+      "kind": "test",
+      "selector": "    def test_lone_surrogates_in_strings_and_keys(self):"
+    },
+    "py-nonfinite": {
+      "file": "py-json-tests",
+      "kind": "test",
+      "selector": "    def test_malformed_and_nonfinite_json(self):"
+    },
+    "py-numeric": {
+      "file": "py-json-tests",
+      "kind": "test",
+      "selector": "    def test_unsupported_numeric_tokens_are_not_syntax_errors(self):"
+    },
+    "py-utf16": {
+      "file": "py-json-tests",
+      "kind": "test",
+      "selector": "    def test_utf16_key_sorting_not_codepoint_sorting(self):"
+    },
+    "py-normalization": {
+      "file": "py-json-tests",
+      "kind": "test",
+      "selector": "    def test_strings_and_arrays_are_not_normalized_or_reordered(self):"
+    },
+    "py-byte-limit": {
+      "file": "py-json-tests",
+      "kind": "test",
+      "selector": "    def test_byte_limit_inclusive(self):"
+    },
+    "py-depth-limit": {
+      "file": "py-json-tests",
+      "kind": "test",
+      "selector": "    def test_container_depth_inclusive_and_quotes_ignored(self):"
+    },
+    "py-v11-hello": {
+      "file": "py-v11-tests",
+      "kind": "test",
+      "selector": "    def test_v11_hello_identifies_contract_not_a_new_wire_schema(self):"
+    },
+    "py-compat": {
+      "file": "py-v11-tests",
+      "kind": "test",
+      "selector": "    def test_default_and_explicit_v1_api_outputs_and_class_hello_are_unchanged(self):"
+    },
+    "py-no-cartesian": {
+      "file": "py-v11-tests",
+      "kind": "test",
+      "selector": "    def test_paired_cardinality_never_selects_a_good_tuple_over_a_coupled_mismatch(self):"
+    },
+    "py-internal": {
+      "file": "py-cli-tests",
+      "kind": "test",
+      "selector": "    def test_unexpected_code_failure_is_sanitized_and_next_frame_served(self):"
+    },
+    "py-frame-limit": {
+      "file": "py-cli-tests",
+      "kind": "test",
+      "selector": "    def test_frame_limit_inclusive_then_drain_and_recover(self):"
+    },
+    "py-redaction": {
+      "file": "py-cli-tests",
+      "kind": "test",
+      "selector": "    def test_invalid_document_echoes_id_without_document_contents(self):"
+    },
+    "bench-accept": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_check_accepts_both_lanes_but_keeps_description_digests_lane_specific(self):"
+    },
+    "bench-no-authority": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_project_binds_implementation_but_does_not_authorize_or_classify(self):"
+    },
+    "bench-positive": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_project_equivalent_sdk_and_mcp_with_complete_projection(self):"
+    },
+    "bench-unicode": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_project_unicode_bytes_without_normalization(self):"
+    },
+    "bench-boundaries": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_project_native_positive_boundaries(self):"
+    },
+    "bench-native-bad": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_project_rejects_all_malformed_native_parameters(self):"
+    },
+    "bench-other-tool": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_other_shaped_mcp_tool_is_unsupported_before_context(self):"
+    },
+    "bench-missing-context": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_project_requires_nonempty_context_facts(self):"
+    },
+    "bench-case": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_project_preserves_repository_case(self):"
+    },
+    "bench-canonical": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_check_binds_full_context_with_utf16_canonical_key_order(self):"
+    },
+    "bench-replay": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_check_rejects_replay_across_native_context_and_lane(self):"
+    },
+    "bench-binding": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_check_rejects_every_well_formed_concrete_binding_mutation(self):"
+    },
+    "bench-local-refs": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_check_duplicate_ids_quantities_and_dangling_refs_are_invalid(self):"
+    },
+    "bench-missing-quantity": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_check_missing_required_quantity_is_invalid_not_binding_failure(self):"
+    },
+    "bench-unknown-quantity": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_check_well_formed_unresolved_quantity_remains_binding_mismatch(self):"
+    },
+    "bench-extension": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_check_required_extension_payload_and_critical_marker_are_structural(self):"
+    },
+    "bench-critical": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_check_unknown_critical_extensions_are_unsupported_without_retry(self):"
+    },
+    "bench-extra": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_check_rejects_added_effect_evidence_unknown_relation_or_extension(self):"
+    },
+    "bench-combination": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_check_rejects_partial_rebinding_of_record_and_invocation(self):"
+    },
+    "bench-shape": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_check_core_shape_failures_remain_distinct_from_binding_failures(self):"
+    },
+    "bench-syntax": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_cli_syntax_and_duplicate_errors_precede_native_domain_errors(self):"
+    },
+    "bench-bad-json": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_cli_rejects_invalid_json_without_echoing_input(self):"
+    },
+    "bench-numeric": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_cli_description_numeric_tokens_remain_core_domain_errors(self):"
+    },
+    "bench-byte-limit": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_cli_exact_size_boundary_excludes_lf_and_crlf(self):"
+    },
+    "bench-depth-limit": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_cli_depth_limit_does_not_turn_into_successful_review(self):"
+    },
+    "bench-internal": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_internal_exceptions_are_not_parse_or_binding_rejections(self):"
+    },
+    "bench-no-io": {
+      "file": "bench-tests",
+      "kind": "test",
+      "selector": "    def test_processing_does_not_resolve_references_or_execute(self):"
+    }
+  },
+  "requirements": [
+    {
+      "id": "CORE-001",
+      "obligation": "Separate description acceptance from permission, dispatch and completion.",
+      "normativeAnchor": "**CORE-001:**",
+      "accountableRoles": [
+        "consumer"
+      ],
+      "roleGaps": {},
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Only the offline result boundary is supported: accepted_partial carries authority:not_evaluated and no allow/decision.",
+          "implementation": [
+            "js-check",
+            "js-result"
+          ],
+          "positive": [
+            "js-accept"
+          ],
+          "negative": [
+            "js-quantity-shape"
+          ],
+          "untested": [
+            "No authority, dispatch or observer state machine is implemented or tested. The negative anchor rejects an extra allow field, not a real grant."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Only offline description/canonicalization/capability results are produced; none grants authority.",
+          "implementation": [
+            "py-check",
+            "py-result"
+          ],
+          "positive": [
+            "py-accept",
+            "py-capabilities"
+          ],
+          "negative": [
+            "py-diagnostic"
+          ],
+          "untested": [
+            "No authority, dispatch or observed-completion integration is exercised. The negative case rejects a non-description diagnostic input."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "partial",
+            "producer": "not_applicable",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Pinned external project/check outputs retain authority:not_evaluated; checked projection is not a policy decision.",
+          "implementation": [
+            "bench-check",
+            "bench-result"
+          ],
+          "positive": [
+            "bench-accept"
+          ],
+          "negative": [
+            "bench-no-authority"
+          ],
+          "untested": [
+            "No dispatch/observer state separation is assessed here. The negative anchor rejects another implementation and ignores grant-shaped context as authority."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-002",
+      "obligation": "Record the trust basis for material facts without treating authenticated bytes as semantic proof.",
+      "normativeAnchor": "**CORE-002:**",
+      "accountableRoles": [
+        "consumer",
+        "evidence_checker"
+      ],
+      "roleGaps": {},
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "partial",
+            "evidence_checker": "partial"
+          },
+          "scope": "Matches local fixture issuer and invocation/implementation/context/mapping/declaration preimages; trusts a caller-selected snapshot only.",
+          "implementation": [
+            "js-bind",
+            "js-check"
+          ],
+          "positive": [
+            "js-accept"
+          ],
+          "negative": [
+            "js-binding",
+            "js-profile-pin"
+          ],
+          "untested": [
+            "No authenticated acquisition provenance, issuer truth, signature verification or semantic observation evidence. Scope prose is not validated as proof."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "partial",
+            "evidence_checker": "partial"
+          },
+          "scope": "Immutable startup member bytes and declared issuer are checked against configured reference rows; not external trust establishment.",
+          "implementation": [
+            "py-startup",
+            "py-bind"
+          ],
+          "positive": [
+            "py-full-binding",
+            "py-applicable"
+          ],
+          "negative": [
+            "py-issuer",
+            "py-digest-selection"
+          ],
+          "untested": [
+            "No authenticated acquisition chain, signatures or proof of declaration truth. Locally selected fixture bytes need not reflect current remote facts."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "partial",
+            "producer": "not_applicable",
+            "evidence_checker": "partial"
+          },
+          "scope": "Pinned external consumer binds complete context and the local native declaration; implementation identity is declared, not attested.",
+          "implementation": [
+            "bench-context",
+            "bench-check",
+            "bench-expected"
+          ],
+          "positive": [
+            "bench-canonical"
+          ],
+          "negative": [
+            "bench-binding",
+            "bench-missing-context"
+          ],
+          "untested": [
+            "Configuration provenance and authenticated provider identity are not established. Signatures and SaaS implementation attestations are absent."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-003",
+      "obligation": "Keep each effect tuple coupled; never synthesize a Cartesian-product tuple.",
+      "normativeAnchor": "**CORE-003:**",
+      "accountableRoles": [
+        "consumer"
+      ],
+      "roleGaps": {},
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Exactly one synthetic refund tuple; mismatched resource/destination/quantity is rejected and multiple alternatives are not selected.",
+          "implementation": [
+            "js-projection"
+          ],
+          "positive": [
+            "js-accept"
+          ],
+          "negative": [
+            "js-coupled",
+            "js-no-cartesian"
+          ],
+          "untested": [
+            "No accepted multi-tuple or collection profile; cross-alternative general reasoning is outside this implementation."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Compares the entire one-effect refund projection without recombining fields; rejects alternate tuple cardinalities.",
+          "implementation": [
+            "py-projection"
+          ],
+          "positive": [
+            "py-accept"
+          ],
+          "negative": [
+            "py-coupled",
+            "py-no-cartesian"
+          ],
+          "untested": [
+            "No accepted multi-tuple/collection profile or generalized relation semantics."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "producer": "not_applicable",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Pinned external check compares the complete expected one-comment description and coupled projection.",
+          "implementation": [
+            "bench-check",
+            "bench-project",
+            "bench-expected"
+          ],
+          "positive": [
+            "bench-accept"
+          ],
+          "negative": [
+            "bench-binding",
+            "bench-extra"
+          ],
+          "untested": [
+            "Multiple comments, tuple alternatives and collection profiles are unsupported and not positively exercised."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-004",
+      "obligation": "Use unique typed local IDs and resolve relation, evidence and quantity targets exactly.",
+      "normativeAnchor": "**CORE-004:**",
+      "accountableRoles": [
+        "producer",
+        "consumer",
+        "evidence_checker"
+      ],
+      "roleGaps": {},
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Validates duplicate effect/evidence IDs and local references; final profile permits one effect and no relations.",
+          "implementation": [
+            "js-refs",
+            "js-projection"
+          ],
+          "positive": [
+            "js-accept",
+            "js-unknown"
+          ],
+          "negative": [
+            "js-ids",
+            "js-quantity-refs"
+          ],
+          "untested": [
+            "No positive multi-destination/collection acceptance. Selected JavaScript anchors do not exhaust each relation endpoint or each unknown-target branch."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Separate effect/evidence namespaces and exact local target resolution precede finite refund projection.",
+          "implementation": [
+            "py-refs",
+            "py-projection"
+          ],
+          "positive": [
+            "py-id-namespaces",
+            "py-unknown-amount"
+          ],
+          "negative": [
+            "py-duplicate-effects",
+            "py-duplicate-evidence",
+            "py-ref-targets",
+            "py-evidence-refs",
+            "py-quantity-refs"
+          ],
+          "untested": [
+            "Reference validity is not evidence support. Accepted relations, multi-destination effects and collections remain outside the profile."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "producer": "supported_subset",
+            "evidence_checker": "supported_subset"
+          },
+          "scope": "Pinned external generator uses comment/declaration IDs; checker validates local references before exact one-comment binding.",
+          "implementation": [
+            "bench-expected",
+            "bench-validate",
+            "bench-check"
+          ],
+          "positive": [
+            "bench-accept"
+          ],
+          "negative": [
+            "bench-local-refs",
+            "bench-extra"
+          ],
+          "untested": [
+            "No accepted multi-destination or collection semantics. These are external citations, not locally verified tests."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-005",
+      "obligation": "Resolve categories only through configured versioned semantics; no empty-list or none-slot harmlessness inference.",
+      "normativeAnchor": "**CORE-005:**",
+      "accountableRoles": [
+        "registry_publisher",
+        "consumer"
+      ],
+      "roleGaps": {
+        "registry_publisher": "No registry publisher or remote category resolver is implemented or tested by these targets."
+      },
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "partial",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Finite category/operation constants plus pinned refund manifest; unknown profiles are rejected without resolution.",
+          "implementation": [
+            "js-check",
+            "js-projection"
+          ],
+          "positive": [
+            "js-accept"
+          ],
+          "negative": [
+            "js-profile-pin",
+            "js-missing-descendants"
+          ],
+          "untested": [
+            "No registry/category-definition publishing tests or checked-empty-bound semantics. The cited gate test uses an unknown profile, not every possible category/none-slot mutation."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Pinned profile and exact category/operation/slots; zero effects or none/unknown replacement cannot pass the finite projection.",
+          "implementation": [
+            "py-check",
+            "py-projection",
+            "py-startup"
+          ],
+          "positive": [
+            "py-accept"
+          ],
+          "negative": [
+            "py-cardinality",
+            "py-coupled"
+          ],
+          "untested": [
+            "No remote registry/category lifecycle or checked-empty-effect-universe support. General collections are unsupported."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "producer": "not_applicable",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Pinned external checker compares the configured category/operation and requires exactly one known-resource comment effect.",
+          "implementation": [
+            "bench-check",
+            "bench-expected"
+          ],
+          "positive": [
+            "bench-accept"
+          ],
+          "negative": [
+            "bench-binding"
+          ],
+          "untested": [
+            "Does not establish a registry trust chain, arbitrary category definitions or general harmlessness. The runtime itself does not enforce this new candidate pin."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-006",
+      "obligation": "Distinguish may/observed, direct/transitive and partial/bounded coverage.",
+      "normativeAnchor": "**CORE-006:**",
+      "accountableRoles": [
+        "producer",
+        "consumer",
+        "evidence_checker",
+        "observer"
+      ],
+      "roleGaps": {
+        "observer": "No assessed target supplies provider observation evidence or verified occurrence/completion."
+      },
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Accepts direct/partial may declarations only; observed and bounded claims are unsupported, never upgraded.",
+          "implementation": [
+            "js-check"
+          ],
+          "positive": [
+            "js-accept"
+          ],
+          "negative": [
+            "js-scope"
+          ],
+          "untested": [
+            "No observed, transitive or bounded-claim positive path; no producer or observation-evidence checker."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Accepts direct/partial declarations and rejects observation/analysis/review evidence scope.",
+          "implementation": [
+            "py-check"
+          ],
+          "positive": [
+            "py-accept"
+          ],
+          "negative": [
+            "py-scope"
+          ],
+          "untested": [
+            "No observed/direct-to-transitive or complete-bound evidence checker and no producer implementation."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "producer": "supported_subset",
+            "evidence_checker": "partial"
+          },
+          "scope": "Pinned external producer emits one may/direct/partial declaration with unobserved provider descendants; check enforces exact scope.",
+          "implementation": [
+            "bench-expected",
+            "bench-check"
+          ],
+          "positive": [
+            "bench-accept"
+          ],
+          "negative": [
+            "bench-binding",
+            "bench-extra"
+          ],
+          "untested": [
+            "No checked bound or observation acceptance. Notification recipients, delivery, webhooks and descendants are not bounded; their unknown scope does not mean notifications never happen."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-007",
+      "obligation": "Establish bounded claims only with an exact supported checker and complete bindings/assumptions.",
+      "normativeAnchor": "**CORE-007:**",
+      "accountableRoles": [
+        "producer",
+        "consumer",
+        "evidence_checker"
+      ],
+      "roleGaps": {},
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "unsupported",
+            "evidence_checker": "unsupported"
+          },
+          "scope": "Bounded claims, including empty bounds, have no checker; only the refusal gate is evidenced.",
+          "implementation": [
+            "js-check"
+          ],
+          "positive": [],
+          "negative": [
+            "js-scope"
+          ],
+          "untested": [
+            "All positive bounded-claim, effect-universe, assumption and unknown-inside-bound obligations are unimplemented and untested."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "unsupported",
+            "evidence_checker": "unsupported"
+          },
+          "scope": "Direct/partial declaration profile refuses bounded_claim, including an empty effects list, before artifact acceptance.",
+          "implementation": [
+            "py-check"
+          ],
+          "positive": [],
+          "negative": [
+            "py-scope"
+          ],
+          "untested": [
+            "No bound establishment, proof checking, implementation analysis or empty-universe evidence exists."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "unsupported",
+            "producer": "unsupported",
+            "evidence_checker": "unsupported"
+          },
+          "scope": "Pinned external checker rejects changing the exact partial declaration to bounded_claim; it cannot establish a bound.",
+          "implementation": [
+            "bench-check",
+            "bench-expected"
+          ],
+          "positive": [],
+          "negative": [
+            "bench-binding"
+          ],
+          "untested": [
+            "No positive bound checker, assumption proof, empty-bound or transitive completeness evidence. Refusal is not conformance to the establishment branch."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-008",
+      "obligation": "Preserve known effects alongside distinct unknowns without inventing benign values.",
+      "normativeAnchor": "**CORE-008:**",
+      "accountableRoles": [
+        "consumer"
+      ],
+      "roleGaps": {},
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "partial",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Known refund tuple remains alongside descendants and explicit absent-source amount unknowns; count/full digest retain input unknowns.",
+          "implementation": [
+            "js-projection",
+            "js-check"
+          ],
+          "positive": [
+            "js-unknown"
+          ],
+          "negative": [
+            "js-unknown-disagrees"
+          ],
+          "untested": [
+            "No accepted unknown-destination tuple. Not every supported unknown code or conflict treatment has a dedicated JavaScript test anchor."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "partial",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Known refund effect survives additional distinguished unknown entries; explicit missing amount is separate from a wrong known value.",
+          "implementation": [
+            "py-projection",
+            "py-check"
+          ],
+          "positive": [
+            "py-unknowns",
+            "py-unknown-amount"
+          ],
+          "negative": [
+            "py-unknown-disagrees"
+          ],
+          "untested": [
+            "Unknown destination is not positively supported by this exact-refund projection; unknown conflict labels are retained, not semantically resolved."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "partial",
+            "producer": "not_applicable",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Pinned external declaration retains exactly its provider-descendant unknown alongside the known comment; alterations are binding mismatches.",
+          "implementation": [
+            "bench-expected",
+            "bench-check"
+          ],
+          "positive": [
+            "bench-accept"
+          ],
+          "negative": [
+            "bench-binding",
+            "bench-unknown-quantity",
+            "bench-extra"
+          ],
+          "untested": [
+            "Arbitrary additional unknowns, unknown destination/quantity and conflicting evidence are not accepted; no general unknown-preservation claim."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-009",
+      "obligation": "Reject malformed UTF-8/JSON, duplicate names, invalid scalars and nonfinite tokens.",
+      "normativeAnchor": "**CORE-009:**",
+      "accountableRoles": [
+        "producer",
+        "consumer"
+      ],
+      "roleGaps": {},
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Strict raw-byte parser detects decoded duplicate keys, malformed scalars and syntax before unsupported-number rejection.",
+          "implementation": [
+            "js-parse"
+          ],
+          "positive": [
+            "js-numeric",
+            "js-utf16"
+          ],
+          "negative": [
+            "js-duplicate",
+            "js-utf8",
+            "js-syntax"
+          ],
+          "untested": [
+            "No producer implementation or full RFC 8785 binary64 domain; fractions/exponents are unsupported rather than accepted JSON profile values."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Strict byte parser validates UTF-8, decoded names, scalars and complete syntax; safe-integer numeric subset only.",
+          "implementation": [
+            "py-parse"
+          ],
+          "positive": [
+            "py-json-values"
+          ],
+          "negative": [
+            "py-json-duplicate",
+            "py-utf8",
+            "py-surrogate",
+            "py-nonfinite",
+            "py-numeric"
+          ],
+          "untested": [
+            "No producer implementation or full binary64/JCS support; these finite parser tests are not a proof over every possible byte string."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "partial",
+            "producer": "supported_subset",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Pinned external request parser distinguishes malformed syntax from native-field/domain failures, then uses Spec strict parsing for accepted values.",
+          "implementation": [
+            "bench-check",
+            "bench-native",
+            "bench-expected"
+          ],
+          "positive": [
+            "bench-accept",
+            "bench-unicode"
+          ],
+          "negative": [
+            "bench-syntax",
+            "bench-bad-json",
+            "bench-numeric"
+          ],
+          "untested": [
+            "Native-field precedence differs from raw description parsing; no claim that the GitHub adapter is the refund contract or full binary64. External tests are not run here."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-010",
+      "obligation": "Use exact quantity strings, named requirements, explicit unknown targets, units and scales.",
+      "normativeAnchor": "**CORE-010:**",
+      "accountableRoles": [
+        "producer",
+        "registry_publisher",
+        "consumer"
+      ],
+      "roleGaps": {
+        "registry_publisher": "Only fixed bundled quantity definitions exist; no general quantity-profile publishing/revision service is tested."
+      },
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Nonnegative USD refund amount 0..999999999999 at scale 2, or explicit absent-source unknown with exact target.",
+          "implementation": [
+            "js-refs",
+            "js-projection",
+            "js-structure"
+          ],
+          "positive": [
+            "js-accept",
+            "js-unknown"
+          ],
+          "negative": [
+            "js-quantity-shape",
+            "js-quantity-refs",
+            "js-coupled",
+            "js-missing-amount"
+          ],
+          "untested": [
+            "No other unit, scale, negative amount, conversion or collection profile; no authorization calculation. Full boundary coverage is not inferred from selected tests."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Exact refund integer-string grammar/range and one known or targeted unknown amount; no rounding or conversion.",
+          "implementation": [
+            "py-structure",
+            "py-applicability",
+            "py-refs",
+            "py-projection"
+          ],
+          "positive": [
+            "py-amount-range",
+            "py-unknown-amount"
+          ],
+          "negative": [
+            "py-quantity-syntax",
+            "py-quantity-refs",
+            "py-missing-amount",
+            "py-amount-mismatch"
+          ],
+          "untested": [
+            "No authorization arithmetic, unit conversion, other monetary operations or quantity collections."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "producer": "supported_subset",
+            "evidence_checker": "supported_subset"
+          },
+          "scope": "Pinned external profile requires exact UTF-8 body-byte quantity, unit byte/scale 0, and a separate body SHA-256 extension.",
+          "implementation": [
+            "bench-project",
+            "bench-expected",
+            "bench-validate"
+          ],
+          "positive": [
+            "bench-unicode",
+            "bench-boundaries"
+          ],
+          "negative": [
+            "bench-missing-quantity",
+            "bench-unknown-quantity",
+            "bench-binding"
+          ],
+          "untested": [
+            "No monetary/other units or positively accepted unknown body-byte count. Native input issue_number uses the explicitly bounded safe-integer field, not a quantity conversion."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-011",
+      "obligation": "Compare identities exactly and bind immutable, version-specific effective profile semantics.",
+      "normativeAnchor": "**CORE-011:**",
+      "accountableRoles": [
+        "registry_publisher",
+        "consumer"
+      ],
+      "roleGaps": {
+        "registry_publisher": "The additive candidate freezes original normative bytes separately. This is not a registry resolver or a complete CORE-011 effective wire manifest."
+      },
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "partial",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Exact strings and full pinned refund-manifest hash; original wire profile identity is unchanged.",
+          "implementation": [
+            "js-check",
+            "js-bind",
+            "js-projection"
+          ],
+          "positive": [
+            "js-accept",
+            "js-normalization"
+          ],
+          "negative": [
+            "js-profile-pin",
+            "js-binding"
+          ],
+          "untested": [
+            "No generalized identity resolver or complete immutable component-manifest resolution. JavaScript anchors do not exhaust case/confusable identity pairs."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "partial",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Exact reference/ID comparison, no casefold or Unicode normalization, with complete configured refund-manifest digest.",
+          "implementation": [
+            "py-refs",
+            "py-bind",
+            "py-startup"
+          ],
+          "positive": [
+            "py-accept",
+            "py-normalization"
+          ],
+          "negative": [
+            "py-id-exact",
+            "py-binding-keys",
+            "py-profile-pin"
+          ],
+          "untested": [
+            "The historical refund profile is not rewritten into a new effective-component manifest; generalized resolver/component semantics remain unimplemented."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "partial",
+            "producer": "not_applicable",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Pinned external consumer keeps repository case and binds its locally loaded original profile JSON; the new candidate is out-of-band.",
+          "implementation": [
+            "bench-project",
+            "bench-check",
+            "bench-expected"
+          ],
+          "positive": [
+            "bench-case",
+            "bench-accept"
+          ],
+          "negative": [
+            "bench-binding"
+          ],
+          "untested": [
+            "Baseline GitHub consumer computes the configured manifest hash, not an independently trusted immutable normative-component pin. Candidate verification must be invoked separately; this is not full CORE-011 compliance."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-012",
+      "obligation": "Use declared digest algorithms/preimages without treating hashes as truth or authority.",
+      "normativeAnchor": "**CORE-012:**",
+      "accountableRoles": [
+        "producer",
+        "consumer",
+        "evidence_checker"
+      ],
+      "roleGaps": {},
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "evidence_checker": "partial"
+          },
+          "scope": "Safe-integer RFC 8785 subset; full description digest and selected complete local member preimages, arrays/Unicode preserved.",
+          "implementation": [
+            "js-canonical",
+            "js-bind",
+            "js-check"
+          ],
+          "positive": [
+            "js-utf16",
+            "js-normalization",
+            "js-accept"
+          ],
+          "negative": [
+            "js-binding",
+            "js-numeric"
+          ],
+          "untested": [
+            "No full binary64, signatures, arbitrary artifact selection or semantic-correctness proof. Negative anchors do not exhaust every enclosing-object substitution in JavaScript."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "evidence_checker": "partial"
+          },
+          "scope": "Complete selected member canonical bytes, exact reference selection and full accepted-description digest in the finite integer-only subset.",
+          "implementation": [
+            "py-canonical",
+            "py-bind",
+            "py-check"
+          ],
+          "positive": [
+            "py-full-binding",
+            "py-utf16",
+            "py-normalization"
+          ],
+          "negative": [
+            "py-digest-selection",
+            "py-numeric"
+          ],
+          "untested": [
+            "No full binary64, signatures, non-JSON reference profile or correctness/authority inference."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "producer": "supported_subset",
+            "evidence_checker": "partial"
+          },
+          "scope": "Pinned external consumer hashes complete native/context/profile and declaration combination, plus exact body UTF-8 bytes separately.",
+          "implementation": [
+            "bench-check",
+            "bench-project",
+            "bench-expected"
+          ],
+          "positive": [
+            "bench-canonical",
+            "bench-unicode",
+            "bench-accept"
+          ],
+          "negative": [
+            "bench-binding",
+            "bench-combination"
+          ],
+          "untested": [
+            "No signatures, arbitrary reference preimages or full binary64. Candidate component raw-byte hashes are not the original wire profile_digest."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-013",
+      "obligation": "Bind mappings to explicit implementation/version, revision, context and evidence applicability.",
+      "normativeAnchor": "**CORE-013:**",
+      "accountableRoles": [
+        "producer",
+        "registry_publisher",
+        "consumer"
+      ],
+      "roleGaps": {
+        "registry_publisher": "No registry version-range publication, ecosystem comparator or revision-distribution implementation is exercised."
+      },
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Matches synthetic-refund-tool 1.0.0, declared visibility and exact fixture mapping/context; inapplicable values reject.",
+          "implementation": [
+            "js-bind",
+            "js-projection"
+          ],
+          "positive": [
+            "js-accept"
+          ],
+          "negative": [
+            "js-applicability"
+          ],
+          "untested": [
+            "No version ranges, comparator ecosystem support, future release inference or attested implementation."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Snapshot derives applicability from exact name/version/environment/mapping constraints before finite projection.",
+          "implementation": [
+            "py-applicability",
+            "py-bind",
+            "py-projection"
+          ],
+          "positive": [
+            "py-applicable"
+          ],
+          "negative": [
+            "py-bad-applicability"
+          ],
+          "untested": [
+            "No range comparator, registry service, external provider implementation or attestation."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "producer": "supported_subset",
+            "evidence_checker": "partial"
+          },
+          "scope": "Pinned external project/check uses exact github-comment-bridge/1 declared identity and mapping revision 1, with required configured context.",
+          "implementation": [
+            "bench-context",
+            "bench-expected",
+            "bench-check"
+          ],
+          "positive": [
+            "bench-accept"
+          ],
+          "negative": [
+            "bench-no-authority",
+            "bench-missing-context",
+            "bench-binding"
+          ],
+          "untested": [
+            "No range/version ecosystem comparator, SaaS code attestation, future GitHub implementation coverage or independently verified publisher."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-014",
+      "obligation": "Bind concrete invocation/context and complete accepted statements, not disconnected hashes.",
+      "normativeAnchor": "**CORE-014:**",
+      "accountableRoles": [
+        "producer",
+        "consumer",
+        "evidence_checker",
+        "observer"
+      ],
+      "roleGaps": {
+        "observer": "No occurrence-bound provider observation is checked by these assessed implementations."
+      },
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "partial",
+            "evidence_checker": "partial"
+          },
+          "scope": "Binds local invocation, implementation, mapping, context and declaration before emitting a digest of the complete description.",
+          "implementation": [
+            "js-bind",
+            "js-check"
+          ],
+          "positive": [
+            "js-accept",
+            "js-unknown"
+          ],
+          "negative": [
+            "js-binding"
+          ],
+          "untested": [
+            "No current external context/freshness, occurrence or stored attested acceptance. The selected JavaScript negatives do not exhaust every combination-rebinding attack."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "partial",
+            "evidence_checker": "partial"
+          },
+          "scope": "Binds all selected complete members, including uninterpreted metadata, before hashing the accepted full description.",
+          "implementation": [
+            "py-bind",
+            "py-check"
+          ],
+          "positive": [
+            "py-full-binding",
+            "py-applicable"
+          ],
+          "negative": [
+            "py-digest-selection",
+            "py-binding-keys"
+          ],
+          "untested": [
+            "No fresh external context, stored acceptance attestation or occurrence binding. Accepted digest is not a signature or permission."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "producer": "supported_subset",
+            "evidence_checker": "partial"
+          },
+          "scope": "Pinned external check compares the full description to the exact native/context combination; lane-specific invocation digests are retained.",
+          "implementation": [
+            "bench-check",
+            "bench-expected"
+          ],
+          "positive": [
+            "bench-accept",
+            "bench-canonical"
+          ],
+          "negative": [
+            "bench-replay",
+            "bench-combination"
+          ],
+          "untested": [
+            "No durable acceptance attestation, remote context freshness or provider occurrence proof. Cross-runtime projection equivalence is not description-digest equality."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-015",
+      "obligation": "Separate evidence kinds, source, artifact selection/digest and actual claim support.",
+      "normativeAnchor": "**CORE-015:**",
+      "accountableRoles": [
+        "producer",
+        "consumer",
+        "evidence_checker",
+        "observer"
+      ],
+      "roleGaps": {
+        "observer": "No occurrence/provider evidence interpretation. Analyses, reviews and observations are outside both offline declaration profiles."
+      },
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "partial",
+            "evidence_checker": "partial"
+          },
+          "scope": "Requires artifact reference/digest, known declaration issuer and local coupled projection; non-declaration evidence is unsupported.",
+          "implementation": [
+            "js-bind",
+            "js-check",
+            "js-projection"
+          ],
+          "positive": [
+            "js-accept"
+          ],
+          "negative": [
+            "js-evidence-fields",
+            "js-binding",
+            "js-scope"
+          ],
+          "untested": [
+            "Scope text, reviewer count and hashes do not establish truth or independence. Conflicting evidence is not adjudicated and declaration acquisition is not authenticated."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "partial",
+            "evidence_checker": "partial"
+          },
+          "scope": "Requires every evidence item to match configured declaration source and selected artifact bytes; known effects still require exact projection.",
+          "implementation": [
+            "py-bind",
+            "py-check",
+            "py-projection"
+          ],
+          "positive": [
+            "py-issuer",
+            "py-accept"
+          ],
+          "negative": [
+            "py-fields",
+            "py-digest-selection",
+            "py-scope"
+          ],
+          "untested": [
+            "No semantic analysis/review checker, authenticated acquisition or conflict adjudication; preserved scope text is not proof of support."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "partial",
+            "producer": "supported_subset",
+            "evidence_checker": "partial"
+          },
+          "scope": "Pinned external producer emits a declaration artifact for native/context/profile; checker rejects changed evidence source/kind/digest/scope.",
+          "implementation": [
+            "bench-expected",
+            "bench-check"
+          ],
+          "positive": [
+            "bench-accept"
+          ],
+          "negative": [
+            "bench-binding",
+            "bench-extra"
+          ],
+          "untested": [
+            "No receiver observations, semantic reviews or external evaluator independence. A matching declaration is not proof of remote truth."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-016",
+      "obligation": "Evaluate conditions only through an explicitly supported versioned profile with distinct failure states.",
+      "normativeAnchor": "**CORE-016:**",
+      "accountableRoles": [
+        "registry_publisher",
+        "consumer",
+        "evidence_checker"
+      ],
+      "roleGaps": {
+        "registry_publisher": "No condition profile is published as implemented. CEL remains optional and unsupported."
+      },
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "unsupported",
+            "evidence_checker": "unsupported"
+          },
+          "scope": "No condition evaluator, including CEL, is implemented.",
+          "implementation": [
+            "js-check"
+          ],
+          "positive": [],
+          "negative": [],
+          "untested": [
+            "All true/false/unknown/evaluation-failure condition branches, side-effect restrictions and evaluator resource bounds are untested; generic critical-extension refusal is not a CEL test."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "unsupported",
+            "evidence_checker": "unsupported"
+          },
+          "scope": "No expression evaluation or condition-language support exists in the offline consumer.",
+          "implementation": [
+            "py-check"
+          ],
+          "positive": [],
+          "negative": [],
+          "untested": [
+            "No CEL, host-function policy, true/false/unknown semantics, condition exception or timeout tests."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "unsupported",
+            "producer": "not_applicable",
+            "evidence_checker": "unsupported"
+          },
+          "scope": "Pinned external comment profile has no supported condition evaluator. Bench authorization/OPA is a separate role outside this matrix.",
+          "implementation": [
+            "bench-check"
+          ],
+          "positive": [],
+          "negative": [],
+          "untested": [
+            "No CEL or other semantic condition profile is checked by this target. Policy output must not be relabeled as condition-profile conformance."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-017",
+      "obligation": "Separate processing results, policy decisions and execution outcomes; failures are not semantic successes.",
+      "normativeAnchor": "**CORE-017:**",
+      "accountableRoles": [
+        "consumer",
+        "producer",
+        "evidence_checker",
+        "authority",
+        "enforcement_point",
+        "observer"
+      ],
+      "roleGaps": {
+        "authority": "No policy decision implementation is assessed.",
+        "enforcement_point": "No dispatch implementation is assessed.",
+        "observer": "No execution observation implementation is assessed."
+      },
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "evidence_checker": "partial"
+          },
+          "scope": "Processing statuses/reasons and authority:not_evaluated are separate from nonexistent policy/execution outputs; handler errors stay evaluation_failure.",
+          "implementation": [
+            "js-result",
+            "js-check",
+            "js-frame"
+          ],
+          "positive": [
+            "js-accept",
+            "js-recovery"
+          ],
+          "negative": [
+            "js-internal"
+          ],
+          "untested": [
+            "No runtime policy/execution interface or scoring implementation is exercised. Withholding after errors is not scored as a correct block."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "evidence_checker": "partial"
+          },
+          "scope": "Expected rejections and unexpected adapter failures have distinct results; serving subsequent frames does not grant authority.",
+          "implementation": [
+            "py-result",
+            "py-check",
+            "py-frame"
+          ],
+          "positive": [
+            "py-accept",
+            "py-capabilities"
+          ],
+          "negative": [
+            "py-internal"
+          ],
+          "untested": [
+            "No policy, enforcement, observer or semantic-denial scoring implementation."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "producer": "partial",
+            "evidence_checker": "partial"
+          },
+          "scope": "Pinned external process_line returns processing outcomes with authority:not_evaluated, including internal-error failures.",
+          "implementation": [
+            "bench-result",
+            "bench-check"
+          ],
+          "positive": [
+            "bench-accept"
+          ],
+          "negative": [
+            "bench-internal"
+          ],
+          "untested": [
+            "No Bench policy/ledger/gate scoring is included. The JavaScript mapper is not assessed here and no claim about its compound-error behavior follows."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-018",
+      "obligation": "An enforcement integration must withhold affected execution when necessary semantics/evidence are missing.",
+      "normativeAnchor": "**CORE-018:**",
+      "accountableRoles": [
+        "enforcement_point",
+        "authority"
+      ],
+      "roleGaps": {
+        "enforcement_point": "Unsupported by all assessed targets; no dispatch occurs. Bench enforcement and compound runtime tests are separate, unverified external work.",
+        "authority": "No trusted current denial or human-approval integration is implemented or tested here."
+      },
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "not_applicable",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Not applicable to this no-dispatch offline consumer role; it does not implement enforcement.",
+          "implementation": [
+            "js-result"
+          ],
+          "positive": [],
+          "negative": [],
+          "untested": [
+            "Execution withholding, denial preservation and invalid-proof/human-approval interaction are not tested."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "not_applicable",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Not applicable to this offline processing interface; it has no execution boundary.",
+          "implementation": [
+            "py-result"
+          ],
+          "positive": [],
+          "negative": [],
+          "untested": [
+            "No enforcement withholding, applicable denial preservation or human-approval repair tests."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "not_applicable",
+            "producer": "not_applicable",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Pinned external project/check consumer is not the separate Bench gate/authorizer.",
+          "implementation": [
+            "bench-result"
+          ],
+          "positive": [],
+          "negative": [],
+          "untested": [
+            "No authorization or enforcement integration is completed or verified by the Spec sidecar."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-019",
+      "obligation": "Never reassign published identifiers; revisions, digests and lifecycle/withdrawal states must be explicit.",
+      "normativeAnchor": "**CORE-019:**",
+      "accountableRoles": [
+        "producer",
+        "registry_publisher"
+      ],
+      "roleGaps": {
+        "registry_publisher": "No publishing lifecycle/tombstone service is implemented. Candidate byte freeze is additive archival integrity, not full registry-governance conformance."
+      },
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "not_applicable",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Not a publishing role. Uses the existing configured refund identifier rather than creating new meanings.",
+          "implementation": [
+            "js-check"
+          ],
+          "positive": [],
+          "negative": [],
+          "untested": [
+            "No experimental/stable/deprecated/withdrawn lifecycle, tombstone, sensitive-content withdrawal or identifier governance tests."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "not_applicable",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Not a registry publisher or producer; pins the existing refund manifest only.",
+          "implementation": [
+            "py-startup"
+          ],
+          "positive": [],
+          "negative": [],
+          "untested": [
+            "No publisher lifecycle, mutable-locator recovery, safe tombstone or revision-allocation tests."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "not_applicable",
+            "producer": "partial",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Pinned external producer records existing GitHub profile/mapping identifiers and content digest; publication immutability is not enforced by this consumer.",
+          "implementation": [
+            "bench-expected"
+          ],
+          "positive": [
+            "bench-accept"
+          ],
+          "negative": [
+            "bench-binding"
+          ],
+          "untested": [
+            "No lifecycle/withdrawal/tombstone service or byte-retention governance. This candidate cannot be silently used as a replacement wire manifest."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-020",
+      "obligation": "Distinguish cached bytes from acceptance reuse and revalidate all relevant dependencies.",
+      "normativeAnchor": "**CORE-020:**",
+      "accountableRoles": [
+        "consumer"
+      ],
+      "roleGaps": {
+        "consumer": "Acceptance reuse is not implemented. Startup byte/configuration snapshots are not currentness, freshness or permission caches."
+      },
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "not_applicable",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "No acceptance cache is advertised; checks parse descriptions anew against startup bytes.",
+          "implementation": [
+            "js-hello",
+            "js-check"
+          ],
+          "positive": [
+            "js-v11-hello"
+          ],
+          "negative": [],
+          "untested": [
+            "No acceptance-cache dependency graph, checker/trust epoch, expiry or occurrence invalidation tests. The retained startup snapshot is not revalidated remote state."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "not_applicable",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "No acceptance reuse; fresh output objects and immutable startup snapshot do not imply current remote state.",
+          "implementation": [
+            "py-hello",
+            "py-check",
+            "py-startup"
+          ],
+          "positive": [
+            "py-no-cache"
+          ],
+          "negative": [],
+          "untested": [
+            "No acceptance-reuse invalidation, evidence expiry, trust-epoch or occurrence/freshness tests."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "not_applicable",
+            "producer": "not_applicable",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Pinned external _profile cache stores configuration only; process_line recomputes each supplied description comparison.",
+          "implementation": [
+            "bench-check"
+          ],
+          "positive": [],
+          "negative": [
+            "bench-replay"
+          ],
+          "untested": [
+            "No positive acceptance-cache path or dependency/epoch/expiry invalidation test; native replay mismatch is not a current permission replay check."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-021",
+      "obligation": "Signed registry distribution requires root trust, rotation, recovery, expiry, rollback and bounded offline freshness.",
+      "normativeAnchor": "**CORE-021:**",
+      "accountableRoles": [
+        "registry_publisher",
+        "consumer"
+      ],
+      "roleGaps": {
+        "registry_publisher": "No signed registry distribution, root trust or metadata update service is implemented or tested."
+      },
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "unsupported",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "No signed registry profile, metadata verification or remote revocation knowledge.",
+          "implementation": [
+            "js-check"
+          ],
+          "positive": [],
+          "negative": [],
+          "untested": [
+            "Root trust, signature verification, rotation, compromise recovery, expiry, rollback and maximum offline freshness are all unimplemented."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "unsupported",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Local startup snapshot only; not a signed distribution channel or evidence of current remote revocation.",
+          "implementation": [
+            "py-startup"
+          ],
+          "positive": [],
+          "negative": [],
+          "untested": [
+            "No signed metadata, root rotation, rollback/expiry handling or offline revocation freshness tests."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "unsupported",
+            "producer": "not_applicable",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Pinned external consumer reads local profile configuration and has no signed registry distribution semantics.",
+          "implementation": [
+            "bench-check"
+          ],
+          "positive": [],
+          "negative": [],
+          "untested": [
+            "No trust-root or signed registry profile, expiry, rotation, rollback or remote revocation checks."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-022",
+      "obligation": "Reused descriptions must not bypass the authority system current grant, expiry, revocation, quota or replay checks.",
+      "normativeAnchor": "**CORE-022:**",
+      "accountableRoles": [
+        "consumer",
+        "authority",
+        "enforcement_point"
+      ],
+      "roleGaps": {
+        "authority": "Current authority is a separate adopter obligation; no assessed target implements it.",
+        "enforcement_point": "No live permission or replay checks are enforced by the assessed targets."
+      },
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "unsupported",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Authority is explicitly not_evaluated; this consumer cannot perform the current checks required before execution.",
+          "implementation": [
+            "js-result"
+          ],
+          "positive": [
+            "js-accept"
+          ],
+          "negative": [],
+          "untested": [
+            "No current grant, expiry, revocation, quota, occurrence or permission-replay tests. No new authority capability is implied by description reuse."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "unsupported",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Returns no authority decision, including when the description is accepted; current authorization remains external.",
+          "implementation": [
+            "py-result"
+          ],
+          "positive": [
+            "py-capabilities"
+          ],
+          "negative": [],
+          "untested": [
+            "No OAuth/PDP, current grant, quota, expiry, revocation or execution-replay evaluation."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "unsupported",
+            "producer": "not_applicable",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Pinned external consumer treats configured grant-like values as bound data, not authority; Bench policy is separate.",
+          "implementation": [
+            "bench-result",
+            "bench-context"
+          ],
+          "positive": [
+            "bench-accept"
+          ],
+          "negative": [
+            "bench-no-authority"
+          ],
+          "untested": [
+            "No current principal/grant/revocation/quota/replay or OPA evaluation by this target. Rebinding tests are not current authority tests."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-023",
+      "obligation": "Advertise versions and reject unsupported critical extensions; payloads require exact immutable extension semantics.",
+      "normativeAnchor": "**CORE-023:**",
+      "accountableRoles": [
+        "producer",
+        "registry_publisher",
+        "consumer"
+      ],
+      "roleGaps": {
+        "registry_publisher": "No extension publishing or version-lifecycle service; only configured bundled extension identities exist."
+      },
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "partial",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Advertises spec/profile and explicit v1.1 contract; all critical extensions remain unsupported without stripping/retry.",
+          "implementation": [
+            "js-hello",
+            "js-check"
+          ],
+          "positive": [
+            "js-v11-hello",
+            "js-compat"
+          ],
+          "negative": [
+            "js-critical"
+          ],
+          "untested": [
+            "No implemented payload-bearing or marker-only critical extension profile. No JavaScript-specific noncritical semantic-widening negative test is cited."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "partial",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Advertises spec/profile/opt-in contract and rejects all critical extensions; noncritical metadata is hashed without widening semantics.",
+          "implementation": [
+            "py-hello",
+            "py-check"
+          ],
+          "positive": [
+            "py-v11-hello",
+            "py-compat",
+            "py-metadata"
+          ],
+          "negative": [
+            "py-critical"
+          ],
+          "untested": [
+            "No payload-bearing or marker-only critical extension profile is implemented. The exact critical-extension gate and noncritical metadata tests do not establish generalized extension-version negotiation."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "partial",
+            "producer": "supported_subset",
+            "evidence_checker": "supported_subset"
+          },
+          "scope": "Pinned external producer requires the exact body-digest extension ID/key and payload; checker rejects unknown critical extensions and missing/malformed required payload.",
+          "implementation": [
+            "bench-expected",
+            "bench-validate"
+          ],
+          "positive": [
+            "bench-accept"
+          ],
+          "negative": [
+            "bench-extension",
+            "bench-critical"
+          ],
+          "untested": [
+            "No capabilities/hello negotiation in this adapter. Unknown core versions have existing structure-error behavior, not a new v1/v1.1 negotiation guarantee. Marker-only extension semantics are unsupported."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-024",
+      "obligation": "Publish and enforce finite processing limits with explicit failures rather than truncated success.",
+      "normativeAnchor": "**CORE-024:**",
+      "accountableRoles": [
+        "registry_publisher",
+        "consumer",
+        "producer",
+        "evidence_checker"
+      ],
+      "roleGaps": {
+        "registry_publisher": "No general profile limit-publishing service; limits remain those of the frozen profiles and core schema."
+      },
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "partial",
+            "evidence_checker": "partial"
+          },
+          "scope": "Raw document 1 MiB, nesting 64 and frame 2 MiB limits; bundled schema bounds arrays and quantity strings; failures remain explicit.",
+          "implementation": [
+            "js-parse",
+            "js-structure",
+            "js-frame"
+          ],
+          "positive": [
+            "js-depth",
+            "js-recovery"
+          ],
+          "negative": [
+            "js-bytes",
+            "js-frame-limit"
+          ],
+          "untested": [
+            "No condition evaluator. Exact per-array maximum and quantity-digit boundaries lack dedicated JavaScript anchors here; no measured capacity claim."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "partial",
+            "evidence_checker": "partial"
+          },
+          "scope": "Finite document/depth/frame parsing plus structure limits for effects/evidence/relations and exact quantity digit grammar.",
+          "implementation": [
+            "py-parse",
+            "py-structure",
+            "py-serve"
+          ],
+          "positive": [
+            "py-byte-limit",
+            "py-depth-limit",
+            "py-quantity-syntax"
+          ],
+          "negative": [
+            "py-frame-limit",
+            "py-array-limits",
+            "py-relation-limits"
+          ],
+          "untested": [
+            "No condition evaluation limit to test and no throughput, memory isolation or hostile-host capacity guarantee."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "partial",
+            "producer": "supported_subset",
+            "evidence_checker": "partial"
+          },
+          "scope": "Pinned external consumer bounds document/frame bytes, nesting, native body to 8192 UTF-8 bytes and issue_number to 2147483647; reuses core shape limits.",
+          "implementation": [
+            "bench-stream",
+            "bench-native",
+            "bench-check"
+          ],
+          "positive": [
+            "bench-boundaries",
+            "bench-byte-limit"
+          ],
+          "negative": [
+            "bench-native-bad",
+            "bench-depth-limit"
+          ],
+          "untested": [
+            "No condition evaluator, measured production capacity or exhaustive external core-array boundary tests are claimed."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-025",
+      "obligation": "Treat links/expressions as untrusted data; no ambient network, file, command or credential side effects.",
+      "normativeAnchor": "**CORE-025:**",
+      "accountableRoles": [
+        "consumer",
+        "evidence_checker"
+      ],
+      "roleGaps": {},
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "evidence_checker": "partial"
+          },
+          "scope": "Uses exact configured local reference rows without dereferencing supplied locators or expressions.",
+          "implementation": [
+            "js-bind",
+            "js-check"
+          ],
+          "positive": [
+            "js-accept",
+            "js-uri"
+          ],
+          "negative": [
+            "js-binding"
+          ],
+          "untested": [
+            "No condition evaluator/host-function sandbox. Negative URL test is finite and is not a general noninterference or credential-confidentiality proof."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "evidence_checker": "partial"
+          },
+          "scope": "Exact lookup compares reference strings to caller-selected startup members; no URL fetching or expression execution in checks.",
+          "implementation": [
+            "py-bind",
+            "py-check"
+          ],
+          "positive": [
+            "py-accept",
+            "py-full-binding"
+          ],
+          "negative": [
+            "py-binding-keys"
+          ],
+          "untested": [
+            "No CEL host-function policy or systematic network/file/credential side-effect instrumentation in the cited Spec unit tests."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "supported_subset",
+            "producer": "supported_subset",
+            "evidence_checker": "partial"
+          },
+          "scope": "Pinned external tests guard socket/process/input-selected file operations during accepted and changed-reference checks.",
+          "implementation": [
+            "bench-check",
+            "bench-expected"
+          ],
+          "positive": [
+            "bench-no-io"
+          ],
+          "negative": [
+            "bench-no-io",
+            "bench-binding"
+          ],
+          "untested": [
+            "Only tested entry-point behavior at the pinned commit; no condition evaluator, live provider or generalized sandbox/credential-exfiltration guarantee."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-026",
+      "obligation": "Keep telemetry off by default; define opt-in data handling and exclude secrets/customer data from public records.",
+      "normativeAnchor": "**CORE-026:**",
+      "accountableRoles": [
+        "producer",
+        "registry_publisher",
+        "consumer",
+        "evidence_checker",
+        "authority",
+        "enforcement_point",
+        "observer"
+      ],
+      "roleGaps": {
+        "registry_publisher": "No public registry intake, withdrawal or data retention implementation.",
+        "authority": "No reporting-consent authority integration.",
+        "enforcement_point": "No reporting enforcement integration.",
+        "observer": "No telemetry or provider observation pipeline."
+      },
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "partial",
+            "evidence_checker": "partial"
+          },
+          "scope": "Offline code contains no reporting path; fixed error outputs avoid echoing unexpected handler detail.",
+          "implementation": [
+            "js-check",
+            "js-frame"
+          ],
+          "positive": [],
+          "negative": [
+            "js-internal"
+          ],
+          "untested": [
+            "No dedicated telemetry-default test, opt-in consent/minimization/retention/access/deletion policy or public-registry secret-exclusion tests. This is not an anonymization or compliance claim."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "partial",
+            "evidence_checker": "partial"
+          },
+          "scope": "Offline processing has no telemetry implementation; input/error redaction is narrowly exercised.",
+          "implementation": [
+            "py-check",
+            "py-frame"
+          ],
+          "positive": [],
+          "negative": [
+            "py-redaction",
+            "py-internal"
+          ],
+          "untested": [
+            "No opt-in reporting policy, systematic anonymization/privacy proof or registry data-admission/deletion tests."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "partial",
+            "producer": "partial",
+            "evidence_checker": "partial"
+          },
+          "scope": "Pinned external consumer performs no network reporting during guarded processing and redacts parser failures.",
+          "implementation": [
+            "bench-check",
+            "bench-result"
+          ],
+          "positive": [
+            "bench-no-io"
+          ],
+          "negative": [
+            "bench-bad-json"
+          ],
+          "untested": [
+            "No customer-data ingestion or public-data compliance certification. Telemetry governance, minimization, retention/deletion and publication screening are not implemented."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-027",
+      "obligation": "Require occurrence-bound provider observation for completion and distinguish confirmed/partial/unknown/conflicting outcomes.",
+      "normativeAnchor": "**CORE-027:**",
+      "accountableRoles": [
+        "observer",
+        "enforcement_point"
+      ],
+      "roleGaps": {
+        "observer": "Unsupported: no assessed target is a receiver/provider observer.",
+        "enforcement_point": "Retry/idempotency and remote-commit execution responsibilities are outside these consumers."
+      },
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "not_applicable",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "No completion result; observed modality is outside the declaration profile.",
+          "implementation": [
+            "js-check"
+          ],
+          "positive": [],
+          "negative": [
+            "js-scope"
+          ],
+          "untested": [
+            "All provider-observation, occurrence, confirmed/partial/unknown/conflicting outcome and retry/idempotency obligations remain untested."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "not_applicable",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "No receiver/provider observation checker; observed descriptions are rejected rather than credited as completion.",
+          "implementation": [
+            "py-check"
+          ],
+          "positive": [],
+          "negative": [
+            "py-scope"
+          ],
+          "untested": [
+            "No remote commit, timeout, replay-safe retry or idempotency outcome tests."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "not_applicable",
+            "producer": "not_applicable",
+            "evidence_checker": "not_applicable"
+          },
+          "scope": "Pinned external project/check consumer emits declarations only; separate Bench provider artifacts are not included.",
+          "implementation": [
+            "bench-check",
+            "bench-expected"
+          ],
+          "positive": [],
+          "negative": [
+            "bench-extra"
+          ],
+          "untested": [
+            "No receiver/provider completion verification, timeout classification, partial/conflicting outcome or retry/idempotency responsibility is tested by this sidecar."
+          ]
+        }
+      }
+    },
+    {
+      "id": "CORE-028",
+      "obligation": "Make scoped, revision-specific reports and distinguish self-testing from independent evaluation or certification.",
+      "normativeAnchor": "**CORE-028:**",
+      "accountableRoles": [
+        "producer",
+        "registry_publisher",
+        "consumer",
+        "evidence_checker"
+      ],
+      "roleGaps": {
+        "registry_publisher": "No certification or stable-conformance program. Candidate snapshot and matrix are non-normative partial accountability artifacts, not a passed-case report."
+      },
+      "implementations": {
+        "javascript_refund": {
+          "roleSupport": {
+            "consumer": "partial",
+            "evidence_checker": "partial"
+          },
+          "scope": "Capabilities identify spec/profile and optional contract; this matrix cites exact self-test source, not a full conformance outcome.",
+          "implementation": [
+            "js-hello",
+            "js-result"
+          ],
+          "positive": [
+            "js-v11-hello",
+            "js-compat"
+          ],
+          "negative": [],
+          "untested": [
+            "No machine-attested all-obligation suite/result report or independent evaluation. Unsupported/untested rows forbid a full CORE conformance badge."
+          ]
+        },
+        "python_refund": {
+          "roleSupport": {
+            "consumer": "partial",
+            "evidence_checker": "partial"
+          },
+          "scope": "Capabilities identify the exact finite profile/contract; same-project implementation tests are not external evaluation.",
+          "implementation": [
+            "py-hello",
+            "py-result"
+          ],
+          "positive": [
+            "py-v11-hello",
+            "py-compat"
+          ],
+          "negative": [],
+          "untested": [
+            "No independent external institution, certification or all-applicable-mandatory-obligation result suite; source integrity is not executed test evidence."
+          ]
+        },
+        "github_domain": {
+          "roleSupport": {
+            "consumer": "partial",
+            "producer": "partial",
+            "evidence_checker": "partial"
+          },
+          "scope": "Pinned external source citations identify a finite GitHub profile; nothing is scored or executed by Spec-local link checking.",
+          "implementation": [
+            "bench-result",
+            "bench-expected"
+          ],
+          "positive": [
+            "bench-accept"
+          ],
+          "negative": [],
+          "untested": [
+            "No external consumer result verification or independently evaluated conformance report. External pinned evidence does not increment externallyIndependentEvaluations above 0."
+          ]
+        }
+      }
+    }
+  ]
+}

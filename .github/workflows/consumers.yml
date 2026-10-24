@@ -41,5 +41,11 @@ jobs:
         run: node --test implementations/javascript/*.test.mjs
       - name: Python consumer and adapter tests
         run: python3 -B -W error -m unittest discover -s implementations/python/tests
+      - name: Sidecar integrity and candidate verifier tests
+        run: node --test scripts/tests/*.test.mjs
+      - name: Partial accountability source integrity (does not execute cited tests)
+        run: node scripts/check-coverage.mjs
+      - name: Frozen GitHub candidate integrity (not conformance or authority)
+        run: node scripts/verify-candidate.mjs
       - name: Check that tests did not change tracked inputs
         run: git diff --exit-code

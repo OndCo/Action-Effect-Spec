@@ -34,6 +34,10 @@ Invocation + implementation + context
 - [GitHub issue-comment profile](profiles/github-issue-comment/README.md): an
   additive direct/partial domain profile, with runnable MCP/SDK, consumer and
   OPA examples in the companion benchmark. It does not require OSuite.
+- [Partial profile accountability](conformance/profile-readiness.md): all 28
+  CORE obligations, exact source/test anchors and explicit role-specific gaps.
+- [Frozen GitHub candidate](profiles/github-issue-comment/candidate/README.md):
+  additive offline component pins, not stable conformance or security certification.
 - [Synthetic example](examples/partial-refund.json) and
   [binding semantics](examples/binding-profile.md).
 - [JavaScript](implementations/javascript/cli.mjs) and
