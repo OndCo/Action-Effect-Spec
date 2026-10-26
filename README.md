@@ -101,6 +101,25 @@ holdout or external institutional validation. The original
 [40 design vectors](conformance/requirements.md) are not 40 executed tests;
 the limited profile does not establish full CORE-001..028 conformance.
 
+## Claims and Badges
+
+A conformance claim follows [CORE-028](SPEC.md#10-conformance-and-standards-status):
+it names the exact specification revision, profiles, suite version and hash,
+implementation identity and passed, failed and unsupported cases, and says who
+evaluated it. Two badges can point to such a claim:
+
+- **Ambit tested**: the implementer ran Action Effect Bench and published the
+  claim and raw report.
+- **Ambit verified**: Ond re-ran the same Bench version against the named
+  implementation and published its own report.
+
+Neither badge is a certification, a security guarantee or a claim of conformance
+with a future stable release, and Ond does not verify its own products. Rules,
+badge files and listing requests are at
+[ond.cc/ambit/verified](https://ond.cc/ambit/verified). The Ambit name and marks
+are used under the terms at [ond.cc/ambit/brand](https://ond.cc/ambit/brand),
+not under this repository's MIT license.
+
 ## Collaborate
 
 Useful contributions include a third independently written consumer, a minimal

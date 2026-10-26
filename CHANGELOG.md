@@ -1,5 +1,12 @@
 # Draft Change Record
 
+## Badge Note (26 October 2026)
+
+The README now describes the Ambit tested and Ambit verified badges, which point
+to CORE-028 claims, and links their rules and the terms for the Ambit name and
+marks. No normative text, schema, example, profile, consumer or frozen file
+changed.
+
 ## Ambit Context Note (26 October 2026)
 
 The README now states that this specification is the effects layer of Ambit,
