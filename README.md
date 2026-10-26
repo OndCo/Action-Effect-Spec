@@ -7,6 +7,12 @@ Release `0.2.0-draft.1`; core wire version `0.1.0-draft.1` is unchanged.
 Public working draft, convened by Ond. Not an adopted
 standard, certification program or production authorization service.
 
+**Part of Ambit.** Action Effect Spec is the effects layer of
+[Ambit](https://ond.cc/ambit), an open protocol for describing, authorizing and
+proving agent actions. It is the only Ambit layer published as a draft so far;
+the action-identity, authority, bounds and evidence layers remain research.
+Neither Ambit nor this specification depends on OSuite.
+
 A tool name does not determine its consequences. Implementation, input,
 destination and runtime context matter. This project proposes vendor-neutral
 effect tuples with explicit evidence, applicability and coverage, so different

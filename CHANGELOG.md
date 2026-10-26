@@ -1,5 +1,11 @@
 # Draft Change Record
 
+## Ambit Context Note (26 October 2026)
+
+The README now states that this specification is the effects layer of Ambit,
+an open protocol convened by Ond, and that Ambit's other layers remain research.
+No normative text, schema, example, profile, consumer or frozen file changed.
+
 ## 0.2.0-draft.1
 
 Added an opt-in `offline-consumer-v1.1` contract with startup configuration
