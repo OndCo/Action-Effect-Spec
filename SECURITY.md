@@ -10,6 +10,10 @@ Non-sensitive contract disagreements and synthetic parser counterexamples can
 be reported in GitHub issues. Avoid publicly disclosing a live exploitable
 deployment until the affected owner has had a chance to respond.
 
+Maintainer note (pending): the monitored address above is being confirmed. If
+it does not respond, use GitHub private vulnerability reporting if it is enabled
+for this repository. Do not publish a confidential report in a public issue.
+
 These are experimental offline consumers, not a supported authorization service
 or secure execution sandbox. Supported investigation scope is the current public
 draft and reproducible earlier public revisions. No response-time SLA, bounty,

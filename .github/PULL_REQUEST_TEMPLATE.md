@@ -13,3 +13,4 @@ For semantic changes, include the synthetic counterexample and expected result.
 - [ ] I have identified third-party sources/notices and relevant affiliations or conflicts.
 - [ ] I have not included credentials, customer data or protected evaluation material.
 - [ ] I have not silently changed a frozen source, expected result or historical report.
+- [ ] I have provided the inbound confirmation for the mechanism selected in CONTRIBUTING.md (currently pending selection: DCO sign-off, CLA acknowledgement, or MIT inbound grant).
