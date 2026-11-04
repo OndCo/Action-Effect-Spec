@@ -28,9 +28,49 @@ conflicts. Do not copy standards text or a dataset merely because it is public.
 Material with different or unclear rights needs separate review before adoption.
 Silence, an unsolicited issue or later terms do not retroactively grant rights.
 
-No separate CLA fee is required. This contribution process does not obtain a
-standards-essential patent promise or guarantee freedom to operate. Known
-rights concerns can be raised privately without publishing restricted details.
+### Inbound Mechanism (DRAFT, not in effect)
+
+No inbound mechanism has been selected or approved. The options below are
+drafts for maintainer and legal review; this text does not choose one. Before
+any outside material is merged, maintainers must select exactly one option,
+give it a version string, and record the selection in this section.
+
+- **Option A: Developer Certificate of Origin (DCO).** The contributor adds a
+  `Signed-off-by:` trailer to each commit to certify the DCO text. The DCO
+  contains no express patent grant; counsel should confirm its effect.
+- **Option B: Contributor License Agreement (CLA).** The contributor signs an
+  agreement with a version identifier before merge. Its terms, any grants
+  (including patent terms) and its signing mechanism are not yet drafted.
+- **Option C: Inbound grant under MIT.** Contributions are provided under the
+  repository's MIT license, with authorization confirmed in the pull request.
+  Whether this is sufficient for the project's needs is a legal question.
+
+Selection record (maintainers to complete):
+
+- Selected mechanism: pending
+- Version string: pending
+- Where confirmations are recorded: pending
+- How they are checked before merge: pending
+- Legal review: pending
+
+This contribution process does not obtain a standards-essential patent promise
+or guarantee freedom to operate. Known rights concerns can be raised privately
+without publishing restricted details.
+
+## Status Gates
+
+These gates separate publishing editorial and documentation work from accepting
+outside material. Drafting a mechanism does not approve or activate it.
+
+- **Gate A (safe to publish):** disclaimers are accurate; no verification or
+  certification claim is made without evidence; test evidence is attached with
+  commands, exit codes and versions; a private vulnerability route is
+  documented. Maintainers may merge documentation under Gate A.
+- **Gate B (safe for external contributions):** an inbound mechanism is selected,
+  versioned and reviewed by counsel; a marks policy is approved and its owner
+  and policy URL are verified; the review process is reproducible. Until Gate B
+  is passed, do not merge outside code, specification text or cases, and do not
+  issue any badge.
 
 ## Review and Versioning
 

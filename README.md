@@ -106,19 +106,30 @@ the limited profile does not establish full CORE-001..028 conformance.
 A conformance claim follows [CORE-028](SPEC.md#10-conformance-and-standards-status):
 it names the exact specification revision, profiles, suite version and hash,
 implementation identity and passed, failed and unsupported cases, and says who
-evaluated it. Two badges can point to such a claim:
+evaluated it.
 
-- **Ambit tested**: the implementer ran Action Effect Bench and published the
-  claim and raw report.
-- **Ambit verified**: Ond re-ran the same Bench version against the named
-  implementation and published its own report.
+Badge wording is self-description only. No Ambit marks policy is in effect (see
+the draft [MARKS.md](MARKS.md)), and **no badge is currently issued**. Until a
+policy is adopted, the labels below describe how a claim was produced; they do
+not imply third-party verification:
 
-Neither badge is a certification, a security guarantee or a claim of conformance
-with a future stable release, and Ond does not verify its own products. Rules,
-badge files and listing requests are at
-[ond.cc/ambit/verified](https://ond.cc/ambit/verified). The Ambit name and marks
-are used under the terms at [ond.cc/ambit/brand](https://ond.cc/ambit/brand),
-not under this repository's MIT license.
+- **Ambit tested** (self-test): the implementer ran Action Effect Bench and
+  published the claim and raw report. This is self-reported.
+- **Ambit verified** (reserved, not in use): would describe a re-run of the
+  same Bench version by a party other than the implementer. No criteria or
+  issuer are in effect, so this label must not be used.
+
+Neither label is a certification, a security guarantee or a claim of conformance
+with a future stable release. Ond does not verify its own products.
+
+Earlier versions of this README linked to
+[ond.cc/ambit/verified](https://ond.cc/ambit/verified) and
+[ond.cc/ambit/brand](https://ond.cc/ambit/brand). Those links are kept as
+historical references only. Neither has been confirmed as hosting an approved
+policy, and the authoritative policy URL is **pending verification** (see
+[MARKS.md](MARKS.md)). Until a marks policy is adopted, no new badge is issued
+and no third-party verification may be claimed. The Ambit name and marks are
+not licensed under this repository's MIT license.
 
 ## Collaborate
 

@@ -1,5 +1,18 @@
 # Draft Change Record
 
+## Governance Fixes (pending merge)
+
+Added draft inbound-mechanism options (DCO, CLA, MIT inbound grant) to
+`CONTRIBUTING.md`; none is selected or in effect, and a pull request checklist
+item was added to match. Reworded the README badge text as self-description:
+no Ambit marks policy is in effect and no badge is currently issued. Added a
+draft `MARKS.md`. The `SECURITY.md` contact was not changed; its ownership is
+unconfirmed. No normative text, schema, example, profile, consumer or frozen
+file changed. Added `docs/NAVIGATION.md`, a non-normative pointer from the
+stale `../research/` paths in the frozen `SPEC.md` and `PUBLICATION.md` to
+`references/retrieval-manifest.json`. Added a SECURITY.md maintainer note that
+the contact is pending confirmation. Added Gate A and Gate B status requirements.
+
 ## Badge Note (26 October 2026)
 
 The README now describes the Ambit tested and Ambit verified badges, which point
